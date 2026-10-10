@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f4ed">
+  <meta name="description" content="SOLE. An independent sneaker archive. Good shoes, great stories, your next obsession.">
+  <title>SOLE. — The Sneaker Archive</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23d9ff50'/%3E%3Ctext x='16' y='47' font-size='44' font-family='Arial' font-weight='900'%3ES%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#collection">Skip to collection</a>
+  <header class="site-header page-width">
+    <a class="wordmark" href="#" aria-label="SOLE home">SOLE<span>.</span></a>
+    <a class="pill nav-link" href="#collection">Sneaker List</a>
+    <span class="header-note micro">Archive</span>
+  </header>
+  <main class="page-width">
+    <section class="hero" aria-label="Welcome to the archive">
+      <div class="hero-copy">
+        <p class="micro">CURATED COLLECTION <span class="divider">|</span> EST. 2025</p>
+        <div class="hero-message">
+          <h1>FIND YOUR<br>NEXT PAIR.</h1>
+          <p>Good shoes. Great stories. Your next obsession.</p>
+          <a href="#collection" class="pill explore-link">Explore now <span aria-hidden="true">⟶</span></a>
+        </div>
+        <div class="hero-bottom">
+          <div class="archive-stat"><strong id="archiveCount">—</strong><span class="micro">PAIRS IN<br>THE ARCHIVE</span></div>
+          <span class="asterisk" aria-hidden="true">✳</span>
+        </div>
+      </div>
+      <button class="hero-photo" id="featuredSneaker" type="button" disabled aria-label="Explore the editor’s selection">
+        <img src="images/hero.jpg" alt="A curated collection of sneakers arranged on vintage display boxes" fetchpriority="high">
+        <span class="hero-tag micro">01 / THE ARCHIVE</span>
+        <span class="hero-caption"><span class="micro">EDITOR’S SELECTION</span><strong id="featuredName">The collection</strong><span class="hero-caption-bottom"><span id="featuredBrand">From the SOLE archive</span><span aria-hidden="true">↗</span></span></span>
+      </button>
+    </section>
+    <div class="editorial-line micro"><span>FOR THE LOVE OF THE PAIR.</span><span>Archive</span></div>
+    <section class="collection" id="collection" aria-labelledby="collectionHeading">
+      <div class="collection-heading"><div><p class="micro muted">01 / THE COLLECTION</p><h2 id="collectionHeading">Every pair has a story.</h2></div><span class="count-badge micro" id="resultCount" role="status">LOADING</span></div>
+      <form class="toolbar" id="searchForm" role="search">
+        <div class="search-field"><label class="sr-only" for="searchInput">Find a brand, model, or colorway</label><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="Find a brand, model, or colorway…" autocomplete="off"><button type="submit" aria-label="Search sneakers">⟶</button></div>
+        <label class="select-field"><span class="micro">BRAND</span><select id="brandFilter"><option value="">All brands</option></select></label>
+        <label class="select-field"><span class="micro">SORT BY</span><select id="sortOrder"><option value="archive">Archive order</option><option value="price-low">Price: low to high</option><option value="price-high">Price: high to low</option><option value="year">Release year</option><option value="name">Name: A–Z</option></select></label>
+        <button class="reset-button" id="resetFilters" type="button">Reset ↺</button>
+      </form>
+      <p class="catalog-note" id="catalogNote">Archive prices are catalog references. Check each store for current pricing.</p>
+      <div class="sneaker-list" id="sneakerList" aria-busy="true"><p class="loading-message" role="status">Opening the archive…</p></div>
+    </section>
+  </main>
+  <footer class="page-width site-footer"><a class="wordmark" href="#">SOLE<span>.</span></a><p>Good shoes. Great stories.</p><span class="micro">FOR THE LOVE OF THE PAIR. ↗</span></footer>
+  <dialog id="sneakerDialog" class="detail-dialog" aria-labelledby="detailName">
+    <div class="detail-shell">
+      <button type="button" class="close-dialog" id="closeDialog" aria-label="Close sneaker details" autofocus>✕</button>
+      <div class="detail-visual"><span class="detail-index micro" id="detailIndex"></span><img id="detailImage" alt=""><p class="micro">SOLE / A CLOSER LOOK</p></div>
+      <div class="detail-content"><p class="micro detail-brand" id="detailBrand"></p><h2 id="detailName"></h2><div class="detail-price-row"><div><span class="micro retail-label">Retail Price</span><strong id="detailPrice"></strong></div><span id="detailRating"></span></div><p class="detail-overview" id="detailOverview"></p><p class="catalog-note" id="detailImageNote" hidden></p><p class="micro specs-heading">THE STORY & THE SPECIFICATIONS</p><dl class="spec-sheet" id="detailSpecs"></dl></div>
+    </div>
+  </dialog>
+</body>
+</html>

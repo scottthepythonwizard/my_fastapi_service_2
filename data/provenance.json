@@ -1,0 +1,402 @@
+{
+  "1": {
+    "shoe_reference_number": {
+      "status": "verified",
+      "sources": [
+        "https://www.goat.com/sneakers/air-jordan-1-retro-high-og-chicago-555088-101"
+      ],
+      "note": "Reference SKU is for the 2015 Chicago retro; the supplied 1985 archive year is retained as the silhouette reference year."
+    },
+    "review_stars": {
+      "status": "mock",
+      "sources": [],
+      "note": "Realistic demonstration rating; not an aggregate of actual customer reviews."
+    },
+    "country_of_origin": {
+      "status": "provided",
+      "sources": [],
+      "note": "Country of Origin from the supplied reference; not a verified manufacturing location."
+    },
+    "checked_on": "2026-10-09"
+  },
+  "2": {
+    "shoe_reference_number": {
+      "status": "verified",
+      "sources": [
+        "https://www.goat.com/sneakers/yeezy-boost-350-v2-zebra-cp9654"
+      ],
+      "note": "Reference SKU is for the Zebra release from 2017 and subsequent restocks; the supplied archive year is retained."
+    },
+    "review_stars": {
+      "status": "mock",
+      "sources": [],
+      "note": "Realistic demonstration rating; not an aggregate of actual customer reviews."
+    },
+    "country_of_origin": {
+      "status": "provided",
+      "sources": [],
+      "note": "Country of Origin from the supplied reference; not a verified manufacturing location."
+    },
+    "checked_on": "2026-10-09"
+  },
+  "3": {
+    "shoe_reference_number": {
+      "status": "verified",
+      "sources": [
+        "https://www.nike.com/my/t/air-force-1-07-shoes-WrLlWX/CW2288-111"
+      ],
+      "note": "Reference SKU is for the modern men's Air Force 1 '07 White/White; 1982 remains the supplied silhouette year."
+    },
+    "review_stars": {
+      "status": "verified",
+      "sources": [
+        "https://www.nike.com/my/t/air-force-1-07-shoes-WrLlWX/CW2288-111"
+      ],
+      "note": "Nike product-page aggregate: 4.8/5; may combine reviews across sizes and colorways."
+    },
+    "country_of_origin": {
+      "status": "provided",
+      "sources": [],
+      "note": "Country of Origin from the supplied reference; not a verified manufacturing location."
+    },
+    "checked_on": "2026-10-09"
+  },
+  "4": {
+    "shoe_reference_number": {
+      "status": "verified",
+      "sources": [
+        "https://www.sneakerfiles.com/new-balance-550-white-green-bb550wt1-release-date-info/"
+      ],
+      "note": "Reference SKU is for the 2021 White/Green release; 1989 remains the supplied silhouette year."
+    },
+    "review_stars": {
+      "status": "mock",
+      "sources": [],
+      "note": "Realistic demonstration rating; not an aggregate of actual customer reviews."
+    },
+    "country_of_origin": {
+      "status": "provided",
+      "sources": [],
+      "note": "Country of Origin from the supplied reference; not a verified manufacturing location."
+    },
+    "checked_on": "2026-10-09"
+  },
+  "5": {
+    "shoe_reference_number": {
+      "status": "verified",
+      "sources": [
+        "https://www.converse.com/shop/p/chuck-taylor-all-star-canvas-unisex-high-top-shoe/M9160_070.html"
+      ],
+      "note": "Reference SKU matches the catalog model and colorway; the pictured batch has not been authenticated."
+    },
+    "review_stars": {
+      "status": "verified",
+      "sources": [
+        "https://www.namshi.com/saudi-en/buy-converse-chuck-taylor-all-star/Z033F8697C8D54F34CA7EZ/p/"
+      ],
+      "note": "Namshi product-page aggregate: 4.9/5 from 21 ratings on the M9160 listing."
+    },
+    "country_of_origin": {
+      "status": "provided",
+      "sources": [],
+      "note": "Country of Origin from the supplied reference; not a verified manufacturing location."
+    },
+    "checked_on": "2026-10-09"
+  },
+  "6": {
+    "shoe_reference_number": {
+      "status": "verified",
+      "sources": [
+        "https://www.adidas.co.il/en/adizero-evo-sl-shoes/JH6206.html"
+      ],
+      "note": "Reference SKU matches the catalog model and colorway; the pictured batch has not been authenticated."
+    },
+    "review_stars": {
+      "status": "verified",
+      "sources": [
+        "https://www.scheels.com/p/19831906608"
+      ],
+      "note": "SCHEELS product-family aggregate: 4.7/5 for JH6206; may combine sizes and colorways."
+    },
+    "country_of_origin": {
+      "status": "provided",
+      "sources": [],
+      "note": "Country of Origin from the supplied reference; not a verified manufacturing location."
+    },
+    "checked_on": "2026-10-09"
+  },
+  "7": {
+    "shoe_reference_number": {
+      "status": "verified",
+      "sources": [
+        "https://www.nike.com/jp/launch/t/kobe-5-protro-bruce-lee"
+      ],
+      "note": "Reference SKU and manufacturing source are for the 2020 Kobe 5 Protro Bruce Lee, not the original 2009 release."
+    },
+    "review_stars": {
+      "status": "mock",
+      "sources": [],
+      "note": "Realistic demonstration rating; not an aggregate of actual customer reviews."
+    },
+    "country_of_origin": {
+      "status": "provided",
+      "sources": [],
+      "note": "Country of Origin from the supplied reference; not a verified manufacturing location."
+    },
+    "checked_on": "2026-10-09"
+  },
+  "8": {
+    "shoe_reference_number": {
+      "status": "verified",
+      "sources": [
+        "https://www.goat.com/en-gb/sneakers/adizero-f50-elite-fg-advancement-pack-if8818"
+      ],
+      "note": "Reference SKU matches the catalog model and colorway; the pictured batch has not been authenticated."
+    },
+    "review_stars": {
+      "status": "mock",
+      "sources": [],
+      "note": "Realistic demonstration rating; not an aggregate of actual customer reviews."
+    },
+    "country_of_origin": {
+      "status": "provided",
+      "sources": [],
+      "note": "Country of Origin from the supplied reference; not a verified manufacturing location."
+    },
+    "checked_on": "2026-10-09"
+  },
+  "9": {
+    "shoe_reference_number": {
+      "status": "mock",
+      "sources": [],
+      "note": "Realistic demonstration SKU generated for this archive; not a verified manufacturer-issued reference."
+    },
+    "review_stars": {
+      "status": "mock",
+      "sources": [],
+      "note": "Realistic demonstration rating; not an aggregate of actual customer reviews."
+    },
+    "country_of_origin": {
+      "status": "provided",
+      "sources": [],
+      "note": "Country of Origin from the supplied reference; not a verified manufacturing location."
+    },
+    "checked_on": "2026-10-09"
+  },
+  "10": {
+    "shoe_reference_number": {
+      "status": "verified",
+      "sources": [
+        "https://www.nike.com/sg/launch/t/air-jordan-4-white-cement/"
+      ],
+      "note": "Reference SKU is for the 2025 White Cement retro; 1989 remains the supplied silhouette year."
+    },
+    "review_stars": {
+      "status": "mock",
+      "sources": [],
+      "note": "Realistic demonstration rating; not an aggregate of actual customer reviews."
+    },
+    "country_of_origin": {
+      "status": "provided",
+      "sources": [],
+      "note": "Country of Origin from the supplied reference; not a verified manufacturing location."
+    },
+    "checked_on": "2026-10-09"
+  },
+  "11": {
+    "shoe_reference_number": {
+      "status": "verified",
+      "sources": [
+        "https://www.nike.com/sg/launch/t/air-jordan-3-black-cement"
+      ],
+      "note": "Reference SKU is for the 2024 Black Cement retro; 1988 remains the supplied silhouette year."
+    },
+    "review_stars": {
+      "status": "mock",
+      "sources": [],
+      "note": "Realistic demonstration rating; not an aggregate of actual customer reviews."
+    },
+    "country_of_origin": {
+      "status": "provided",
+      "sources": [],
+      "note": "Country of Origin from the supplied reference; not a verified manufacturing location."
+    },
+    "checked_on": "2026-10-09"
+  },
+  "12": {
+    "shoe_reference_number": {
+      "status": "verified",
+      "sources": [
+        "https://brand.assets.adidas.com/image/upload/v1727663415/TYC_voucher_cyber_lunes_sept_2024_VF_7d900119d5.pdf"
+      ],
+      "note": "Reference SKU matches the catalog model and colorway; the pictured batch has not been authenticated."
+    },
+    "review_stars": {
+      "status": "mock",
+      "sources": [],
+      "note": "Realistic demonstration rating; not an aggregate of actual customer reviews."
+    },
+    "country_of_origin": {
+      "status": "provided",
+      "sources": [],
+      "note": "Country of Origin from the supplied reference; not a verified manufacturing location."
+    },
+    "checked_on": "2026-10-09"
+  },
+  "13": {
+    "shoe_reference_number": {
+      "status": "mock",
+      "sources": [],
+      "note": "Realistic demonstration SKU generated for this archive; not a verified manufacturer-issued reference."
+    },
+    "review_stars": {
+      "status": "mock",
+      "sources": [],
+      "note": "Realistic demonstration rating; not an aggregate of actual customer reviews."
+    },
+    "country_of_origin": {
+      "status": "provided",
+      "sources": [],
+      "note": "Country of Origin from the supplied reference; not a verified manufacturing location."
+    },
+    "checked_on": "2026-10-09"
+  },
+  "14": {
+    "shoe_reference_number": {
+      "status": "verified",
+      "sources": [
+        "https://leisure-center.com/products/az-k111-051-1-black-converse-red-heart-chuck-70-sneakers"
+      ],
+      "note": "Reference SKU matches the catalog model and colorway; the pictured batch has not been authenticated."
+    },
+    "review_stars": {
+      "status": "mock",
+      "sources": [],
+      "note": "Realistic demonstration rating; not an aggregate of actual customer reviews."
+    },
+    "country_of_origin": {
+      "status": "provided",
+      "sources": [],
+      "note": "Country of Origin from the supplied reference; not a verified manufacturing location."
+    },
+    "checked_on": "2026-10-09"
+  },
+  "15": {
+    "shoe_reference_number": {
+      "status": "verified",
+      "sources": [
+        "https://www.nike.com/jp/en/t/v2k-run-womens-shoes-eNkGettO/FD0736-100"
+      ],
+      "note": "Reference SKU matches the catalog model and colorway; the pictured batch has not been authenticated."
+    },
+    "review_stars": {
+      "status": "verified",
+      "sources": [
+        "https://www.nike.com/jp/en/t/v2k-run-womens-shoes-eNkGettO/FD0736-100"
+      ],
+      "note": "Nike Japan product-page aggregate: 4.7/5; includes incentivized ratings and may combine colorways."
+    },
+    "country_of_origin": {
+      "status": "provided",
+      "sources": [],
+      "note": "Country of Origin from the supplied reference; not a verified manufacturing location."
+    },
+    "checked_on": "2026-10-09"
+  },
+  "16": {
+    "shoe_reference_number": {
+      "status": "verified",
+      "sources": [
+        "https://us.puma.com/us/en/pd/speedcat_og/398846"
+      ],
+      "note": "Reference SKU matches the catalog model and colorway; the pictured batch has not been authenticated."
+    },
+    "review_stars": {
+      "status": "verified",
+      "sources": [
+        "https://us.puma.com/us/en/pd/speedcat_og/398846"
+      ],
+      "note": "PUMA US product-page aggregate: 4.4/5; may combine reviews across sizes and colorways."
+    },
+    "country_of_origin": {
+      "status": "provided",
+      "sources": [],
+      "note": "Country of Origin from the supplied reference; not a verified manufacturing location."
+    },
+    "checked_on": "2026-10-09"
+  },
+  "17": {
+    "shoe_reference_number": {
+      "status": "verified",
+      "sources": [
+        "https://novelship.com/es-us/onitsuka-tiger-mexico-66-birch-peacoat-1183-c102-200"
+      ],
+      "note": "Reference SKU matches the catalog model and colorway; the pictured batch has not been authenticated."
+    },
+    "review_stars": {
+      "status": "mock",
+      "sources": [],
+      "note": "Realistic demonstration rating; not an aggregate of actual customer reviews."
+    },
+    "country_of_origin": {
+      "status": "provided",
+      "sources": [],
+      "note": "Country of Origin from the supplied reference; not a verified manufacturing location."
+    },
+    "checked_on": "2026-10-09"
+  },
+  "18": {
+    "shoe_reference_number": {
+      "status": "mock",
+      "sources": [],
+      "note": "Realistic demonstration SKU generated for this archive; not a verified manufacturer-issued reference."
+    },
+    "review_stars": {
+      "status": "mock",
+      "sources": [],
+      "note": "Realistic demonstration rating; not an aggregate of actual customer reviews."
+    },
+    "country_of_origin": {
+      "status": "provided",
+      "sources": [],
+      "note": "Country of Origin from the supplied reference; not a verified manufacturing location."
+    },
+    "checked_on": "2026-10-09"
+  },
+  "19": {
+    "shoe_reference_number": {
+      "status": "mock",
+      "sources": [],
+      "note": "Realistic demonstration SKU generated for this archive; not a verified manufacturer-issued reference."
+    },
+    "review_stars": {
+      "status": "mock",
+      "sources": [],
+      "note": "Realistic demonstration rating; not an aggregate of actual customer reviews."
+    },
+    "country_of_origin": {
+      "status": "provided",
+      "sources": [],
+      "note": "Country of Origin from the supplied reference; not a verified manufacturing location."
+    },
+    "checked_on": "2026-10-09"
+  },
+  "20": {
+    "shoe_reference_number": {
+      "status": "mock",
+      "sources": [],
+      "note": "Realistic demonstration SKU generated for this archive; not a verified manufacturer-issued reference."
+    },
+    "review_stars": {
+      "status": "mock",
+      "sources": [],
+      "note": "Realistic demonstration rating; not an aggregate of actual customer reviews."
+    },
+    "country_of_origin": {
+      "status": "provided",
+      "sources": [],
+      "note": "Country of Origin from the supplied reference; not a verified manufacturing location."
+    },
+    "checked_on": "2026-10-09"
+  }
+}

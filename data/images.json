@@ -1,0 +1,85 @@
+{
+  "hero": "images/hero.jpg",
+  "items": {
+    "1": {
+      "image": "images/1.jpg",
+      "note": ""
+    },
+    "2": {
+      "image": "images/2.jpg",
+      "note": ""
+    },
+    "3": {
+      "image": "images/3.jpg",
+      "note": ""
+    },
+    "4": {
+      "image": "images/4.jpg",
+      "note": ""
+    },
+    "5": {
+      "image": "images/5.jpg",
+      "note": ""
+    },
+    "6": {
+      "image": "images/6.jpg",
+      "note": ""
+    },
+    "7": {
+      "image": "images/7.jpg",
+      "note": ""
+    },
+    "8": {
+      "image": "images/8.jpg",
+      "note": ""
+    },
+    "9": {
+      "image": "images/9.jpg",
+      "note": ""
+    },
+    "10": {
+      "image": "images/10.jpg",
+      "note": ""
+    },
+    "11": {
+      "image": "images/11.jpg",
+      "note": ""
+    },
+    "12": {
+      "image": "images/12.jpg",
+      "note": ""
+    },
+    "13": {
+      "image": "images/13.jpg",
+      "note": ""
+    },
+    "14": {
+      "image": "images/14.jpg",
+      "note": ""
+    },
+    "15": {
+      "image": "images/15.jpg",
+      "note": ""
+    },
+    "16": {
+      "image": "images/16.jpg",
+      "note": ""
+    },
+    "17": {
+      "image": "images/17.jpg",
+      "note": ""
+    },
+    "18": {
+      "image": "images/18.jpg",
+      "note": ""
+    },
+    "19": {
+      "image": "images/19.jpg",
+      "note": ""
+    },
+    "20": {
+      "image": "images/20.jpg",
+      "note": ""
+    }
+  }
+}
