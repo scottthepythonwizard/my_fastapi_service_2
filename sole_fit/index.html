@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f4ed">
+  <meta name="description" content="SoleFit. Your familiar pair, your next fit. Local sizing guidance and community experiences from the SOLE archive.">
+  <title>SoleFit — Your pair. Your fit.</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23d9ff50'/%3E%3Ctext x='16' y='47' font-size='44' font-family='Arial' font-weight='900'%3ES%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <script src="config.js"></script>
+  <script src="community.js" defer></script>
+  <script src="components.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#calculator">Skip to sizing calculator</a>
+  <header class="page-width site-header">
+    <a class="wordmark" href="index.html" aria-label="SoleFit home">SOLE<span>.</span><small>FIT</small></a>
+    <nav aria-label="SOLE ecosystem"><a id="archiveLink" href="http://127.0.0.1:8000/archive">Archive ↗</a></nav>
+  </header>
+  <main class="page-width">
+    <section class="intro" aria-labelledby="pageTitle">
+      <div class="intro-copy"><p class="micro">SOLEFIT / MADE FOR YOUR NEXT STEP</p><h1 id="pageTitle">YOUR PAIR.<br>YOUR FIT.</h1><p class="intro-line">Start with what you know.<br>Find the fit for what comes next.</p><div class="intro-footer"><span class="micro">LOCAL KNOWLEDGE.<br>REAL EXPERIENCES.</span><span class="asterisk" aria-hidden="true">✳</span></div></div>
+      <form id="calculator" class="calculator" aria-labelledby="calculatorTitle">
+        <div class="section-top"><h2 id="calculatorTitle">If you wear X,<br>try size Y.</h2><span class="tag micro">01 / THE CALCULATOR</span></div>
+        <fieldset id="calculatorFields" disabled>
+          <div class="shoe-fields"><div><label class="micro" for="referenceShoe">YOUR REFERENCE / A PAIR YOU KNOW</label><select id="referenceShoe" required></select><div id="referencePreview"></div></div><div><label class="micro" for="targetShoe">YOUR NEXT PAIR / THE ONE YOU WANT</label><select id="targetShoe" required></select><div id="targetPreview"></div></div></div>
+          <div class="size-fields"><div><label class="micro" for="sizeSystem">SIZE SYSTEM</label><select id="sizeSystem"><option value="us_men">US men / unisex</option><option value="us_women">US women</option><option value="eu">EU (approximate conversion)</option></select></div><div><label class="micro" for="referenceSize">YOUR COMFORTABLE SIZE</label><select id="referenceSize" required></select></div></div>
+          <div class="width-control"><label class="micro" for="footWidth">YOUR FOOT WIDTH <output id="widthLabel" for="footWidth">standard</output></label><input id="footWidth" type="range" min="0" max="2" step="1" value="1" aria-valuetext="standard"><div class="width-labels" aria-hidden="true"><span>Narrow</span><span>Standard</span><span>Wide</span></div></div>
+          <button class="pill" id="recommendButton" type="submit">Find my fit ↗</button>
+        </fieldset>
+        <p id="calculatorStatus" class="fit-note" role="status" aria-live="polite"></p>
+        <p class="fit-note">Fit guidance, not a guarantee. Without community votes, recommendations use clearly identified structural estimates.</p>
+      </form>
+    </section>
+    <div class="editorial-line micro"><span>FOR THE LOVE OF THE PAIR.</span><span>LESS GUESSWORK. MORE GOOD FITS.</span></div>
+    <p id="loadStatus" class="fit-note" role="status"></p><button id="retryLoad" type="button" class="fit-secondary" hidden>Retry loading ↗</button>
+    <section id="result" aria-label="Your size recommendation" aria-live="polite" hidden></section>
+    <section id="matrixSection" class="section" aria-labelledby="matrixTitle" hidden><div class="section-heading"><div><p class="micro">02 / THE FIT MATRIX</p><h2 id="matrixTitle">Same size. Different feel.</h2></div><span class="tag micro">STRUCTURE + COMMUNITY</span></div><div id="fitMatrix"></div></section>
+    <section id="community" class="section" aria-labelledby="communityTitle"><div class="section-heading"><div><p class="micro">03 / THE COMMUNITY ARCHIVE</p><h2 id="communityTitle">A better fit, together.</h2></div><span class="tag micro" id="catalogCount">LOADING</span></div><label class="micro" for="catalogSearch">FIND A PAIR TO EXPLORE OR REVIEW</label><input class="catalog-search" id="catalogSearch" type="search" placeholder="Search a brand or model…"><div class="inventory" id="inventory"></div></section>
+  </main>
+  <footer class="page-width"><a class="wordmark" href="index.html">SOLE<span>.</span></a><p>Good shoes. Great stories. A fit that feels like you.</p><span class="micro">SOLEFIT / THE NEXT STEP ↗</span></footer>
+  <dialog id="fitDialog" aria-labelledby="detailTitle"><button type="button" id="closeDetail" class="close-dialog" aria-label="Close fit details">✕</button><p class="micro">A CLOSER LOOK / THE FIT</p><h2 id="detailTitle"></h2><div id="detailPreview"></div><div id="detailTags"></div><button type="button" class="fit-secondary" id="useAsTarget">Use as my next pair ↗</button><div id="communityCard"></div></dialog>
+</body>
+</html>

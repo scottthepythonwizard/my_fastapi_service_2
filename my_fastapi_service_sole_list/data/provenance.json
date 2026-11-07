@@ -1,0 +1,1255 @@
+{
+  "1": {
+    "shoe_reference_number": {
+      "status": "verified",
+      "sources": [
+        "https://www.goat.com/sneakers/air-jordan-1-retro-high-og-chicago-555088-101"
+      ],
+      "note": "Reference number is for the 2015 Chicago retro; the supplied 1985 archive year is retained as the silhouette reference year."
+    },
+    "review_stars": {
+      "status": "mock",
+      "sources": [],
+      "note": "Realistic demonstration rating; not an aggregate of actual customer reviews."
+    },
+    "country_of_origin": {
+      "status": "provided",
+      "sources": [],
+      "note": "Country of Origin from the supplied reference; not a verified manufacturing location."
+    },
+    "checked_on": "2026-10-09",
+    "closure_type": {
+      "status": "observed",
+      "sources": [
+        "https://www.nike.com.br/tenis-nike-air-jordan-i-high-og-unissex-016521.html"
+      ],
+      "note": "Construction identified from the supplied product photograph and model description."
+    },
+    "cut": {
+      "status": "observed",
+      "sources": [
+        "https://www.nike.com.br/tenis-nike-air-jordan-i-high-og-unissex-016521.html"
+      ],
+      "note": "Construction identified from the supplied product photograph and model description."
+    },
+    "sole_material": {
+      "status": "verified",
+      "sources": [
+        "https://www.nike.com.br/tenis-nike-air-jordan-i-high-og-unissex-016521.html"
+      ],
+      "note": "Manufacturer specification for the named model/current reference edition."
+    },
+    "cushioning": {
+      "status": "verified",
+      "sources": [
+        "https://www.nike.com.br/tenis-nike-air-jordan-i-high-og-unissex-016521.html"
+      ],
+      "note": "Manufacturer specification for the named model/current reference edition."
+    },
+    "weight_g": {
+      "status": "estimated",
+      "sources": [
+        "https://www.nike.com.br/tenis-nike-air-jordan-i-high-og-unissex-016521.html"
+      ],
+      "note": "Approx. per shoe, men's US 9; estimate from structured court upper, rubber outsole and impact cushioning. Actual weight varies by size and edition."
+    },
+    "release_month": {
+      "status": "verified",
+      "sources": [
+        "https://www.goat.com/sneakers/air-jordan-1-retro-high-og-chicago-555088-101"
+      ],
+      "note": "2015 Chicago reference edition; archive year is the original silhouette year.",
+      "release_year": 2015
+    }
+  },
+  "2": {
+    "shoe_reference_number": {
+      "status": "verified",
+      "sources": [
+        "https://www.goat.com/sneakers/yeezy-boost-350-v2-zebra-cp9654"
+      ],
+      "note": "Reference number is for the Zebra release from 2017 and subsequent restocks; the supplied archive year is retained."
+    },
+    "review_stars": {
+      "status": "mock",
+      "sources": [],
+      "note": "Realistic demonstration rating; not an aggregate of actual customer reviews."
+    },
+    "country_of_origin": {
+      "status": "provided",
+      "sources": [],
+      "note": "Country of Origin from the supplied reference; not a verified manufacturing location."
+    },
+    "checked_on": "2026-10-09",
+    "closure_type": {
+      "status": "observed",
+      "sources": [
+        "https://preview.thenewsmarket.com/Previews/ADID/DocumentAssets/457525_v2.pdf"
+      ],
+      "note": "Construction identified from the supplied product photograph and model description."
+    },
+    "cut": {
+      "status": "observed",
+      "sources": [
+        "https://preview.thenewsmarket.com/Previews/ADID/DocumentAssets/457525_v2.pdf"
+      ],
+      "note": "Construction identified from the supplied product photograph and model description."
+    },
+    "sole_material": {
+      "status": "verified",
+      "sources": [
+        "https://preview.thenewsmarket.com/Previews/ADID/DocumentAssets/457525_v2.pdf"
+      ],
+      "note": "Manufacturer specification for the named model/current reference edition."
+    },
+    "cushioning": {
+      "status": "verified",
+      "sources": [
+        "https://preview.thenewsmarket.com/Previews/ADID/DocumentAssets/457525_v2.pdf"
+      ],
+      "note": "Manufacturer specification for the named model/current reference edition."
+    },
+    "weight_g": {
+      "status": "estimated",
+      "sources": [
+        "https://preview.thenewsmarket.com/Previews/ADID/DocumentAssets/457525_v2.pdf"
+      ],
+      "note": "Approx. per shoe, men's US 9; estimate from casual upper construction, rubber outsole and footbed. Actual weight varies by size and edition."
+    },
+    "release_month": {
+      "status": "verified",
+      "sources": [
+        "https://www.goat.com/sneakers/yeezy-boost-350-v2-zebra-cp9654"
+      ],
+      "note": "Initial 2017 Zebra reference release; later restocks excluded.",
+      "release_year": 2017
+    }
+  },
+  "3": {
+    "shoe_reference_number": {
+      "status": "verified",
+      "sources": [
+        "https://www.nike.com/my/t/air-force-1-07-shoes-WrLlWX/CW2288-111"
+      ],
+      "note": "Reference number is for the modern men's Air Force 1 '07 White/White; 1982 remains the supplied silhouette year."
+    },
+    "review_stars": {
+      "status": "verified",
+      "sources": [
+        "https://www.nike.com/my/t/air-force-1-07-shoes-WrLlWX/CW2288-111"
+      ],
+      "note": "Nike product-page aggregate: 4.8/5; may combine reviews across sizes and colorways."
+    },
+    "country_of_origin": {
+      "status": "provided",
+      "sources": [],
+      "note": "Country of Origin from the supplied reference; not a verified manufacturing location."
+    },
+    "checked_on": "2026-10-09",
+    "closure_type": {
+      "status": "observed",
+      "sources": [
+        "https://www.nike.com/t/air-force-1-07-mens-shoes-DZejrQoC/CW2288-111"
+      ],
+      "note": "Construction identified from the supplied product photograph and model description."
+    },
+    "cut": {
+      "status": "observed",
+      "sources": [
+        "https://www.nike.com/t/air-force-1-07-mens-shoes-DZejrQoC/CW2288-111"
+      ],
+      "note": "Construction identified from the supplied product photograph and model description."
+    },
+    "sole_material": {
+      "status": "verified",
+      "sources": [
+        "https://www.nike.com/t/air-force-1-07-mens-shoes-DZejrQoC/CW2288-111"
+      ],
+      "note": "Manufacturer specification for the named model/current reference edition."
+    },
+    "cushioning": {
+      "status": "verified",
+      "sources": [
+        "https://www.nike.com/t/air-force-1-07-mens-shoes-DZejrQoC/CW2288-111"
+      ],
+      "note": "Manufacturer specification for the named model/current reference edition."
+    },
+    "weight_g": {
+      "status": "estimated",
+      "sources": [
+        "https://www.nike.com/t/air-force-1-07-mens-shoes-DZejrQoC/CW2288-111"
+      ],
+      "note": "Approx. per shoe, men's US 9; estimate from casual upper construction, rubber outsole and footbed. Actual weight varies by size and edition."
+    },
+    "release_month": {
+      "status": "verified",
+      "sources": [
+        "https://www.goat.com/en-ca/sneakers/air-force-1-07-triple-white-cw2288-111"
+      ],
+      "note": "2020 White/White reference edition; archive year is the 1982 silhouette debut.",
+      "release_year": 2020
+    }
+  },
+  "4": {
+    "shoe_reference_number": {
+      "status": "verified",
+      "sources": [
+        "https://www.sneakerfiles.com/new-balance-550-white-green-bb550wt1-release-date-info/"
+      ],
+      "note": "Reference number is for the 2021 White/Green release; 1989 remains the supplied silhouette year."
+    },
+    "review_stars": {
+      "status": "mock",
+      "sources": [],
+      "note": "Realistic demonstration rating; not an aggregate of actual customer reviews."
+    },
+    "country_of_origin": {
+      "status": "provided",
+      "sources": [],
+      "note": "Country of Origin from the supplied reference; not a verified manufacturing location."
+    },
+    "checked_on": "2026-10-09",
+    "closure_type": {
+      "status": "observed",
+      "sources": [
+        "https://www.newbalance.com/pd/550/BB550V1-52598.html"
+      ],
+      "note": "Construction identified from the supplied product photograph and model description."
+    },
+    "cut": {
+      "status": "observed",
+      "sources": [
+        "https://www.newbalance.com/pd/550/BB550V1-52598.html"
+      ],
+      "note": "Construction identified from the supplied product photograph and model description."
+    },
+    "sole_material": {
+      "status": "verified",
+      "sources": [
+        "https://www.newbalance.com/pd/550/BB550V1-52598.html"
+      ],
+      "note": "Manufacturer specification for the named model/current reference edition."
+    },
+    "cushioning": {
+      "status": "estimated",
+      "sources": [
+        "https://www.newbalance.com/pd/550/BB550V1-52598.html"
+      ],
+      "note": "Construction estimate based on the supplied model and category; exact pictured edition is unverified."
+    },
+    "weight_g": {
+      "status": "estimated",
+      "sources": [
+        "https://www.newbalance.com/pd/550/BB550V1-52598.html"
+      ],
+      "note": "Approx. per shoe, men's US 9; estimate from casual upper construction, rubber outsole and footbed. Actual weight varies by size and edition."
+    },
+    "release_month": {
+      "status": "verified",
+      "sources": [
+        "https://www.goat.com/sneakers/550-white-green-bb550wt1"
+      ],
+      "note": "2021 White/Green reference edition; archive year is the 1989 silhouette debut.",
+      "release_year": 2021
+    }
+  },
+  "5": {
+    "shoe_reference_number": {
+      "status": "verified",
+      "sources": [
+        "https://www.converse.com/shop/p/chuck-taylor-all-star-canvas-unisex-high-top-shoe/M9160_070.html"
+      ],
+      "note": "Reference number matches the catalog model and colorway; the pictured batch has not been authenticated."
+    },
+    "review_stars": {
+      "status": "verified",
+      "sources": [
+        "https://www.namshi.com/saudi-en/buy-converse-chuck-taylor-all-star/Z033F8697C8D54F34CA7EZ/p/"
+      ],
+      "note": "Namshi product-page aggregate: 4.9/5 from 21 ratings on the M9160 listing."
+    },
+    "country_of_origin": {
+      "status": "provided",
+      "sources": [],
+      "note": "Country of Origin from the supplied reference; not a verified manufacturing location."
+    },
+    "checked_on": "2026-10-09",
+    "closure_type": {
+      "status": "observed",
+      "sources": [
+        "https://www.converse.com/shop/p/chuck-taylor-all-star-canvas-unisex-high-top-shoe/M9160_095.html"
+      ],
+      "note": "Construction identified from the supplied product photograph and model description."
+    },
+    "cut": {
+      "status": "observed",
+      "sources": [
+        "https://www.converse.com/shop/p/chuck-taylor-all-star-canvas-unisex-high-top-shoe/M9160_095.html"
+      ],
+      "note": "Construction identified from the supplied product photograph and model description."
+    },
+    "sole_material": {
+      "status": "verified",
+      "sources": [
+        "https://www.converse.com/shop/p/chuck-taylor-all-star-canvas-unisex-high-top-shoe/M9160_095.html"
+      ],
+      "note": "Manufacturer specification for the named model/current reference edition."
+    },
+    "cushioning": {
+      "status": "verified",
+      "sources": [
+        "https://www.converse.com/shop/p/chuck-taylor-all-star-canvas-unisex-high-top-shoe/M9160_095.html"
+      ],
+      "note": "Manufacturer specification for the named model/current reference edition."
+    },
+    "weight_g": {
+      "status": "estimated",
+      "sources": [
+        "https://www.converse.com/shop/p/chuck-taylor-all-star-canvas-unisex-high-top-shoe/M9160_095.html"
+      ],
+      "note": "Approx. per shoe, men's US 9; estimate from casual upper construction, rubber outsole and footbed. Actual weight varies by size and edition."
+    },
+    "release_month": {
+      "status": "estimated",
+      "sources": [],
+      "note": "Estimated spring catalog window for the current classic; not a confirmed 1922 launch month."
+    }
+  },
+  "6": {
+    "shoe_reference_number": {
+      "status": "verified",
+      "sources": [
+        "https://www.adidas.co.il/en/adizero-evo-sl-shoes/JH6206.html"
+      ],
+      "note": "Reference number matches the catalog model and colorway; the pictured batch has not been authenticated."
+    },
+    "review_stars": {
+      "status": "verified",
+      "sources": [
+        "https://www.scheels.com/p/19831906608"
+      ],
+      "note": "SCHEELS product-family aggregate: 4.7/5 for JH6206; may combine sizes and colorways."
+    },
+    "country_of_origin": {
+      "status": "provided",
+      "sources": [],
+      "note": "Country of Origin from the supplied reference; not a verified manufacturing location."
+    },
+    "checked_on": "2026-10-09",
+    "closure_type": {
+      "status": "observed",
+      "sources": [
+        "https://news.adidas.com/running/adizero-adios-pro-4-leads-the-way-as-adidas-introduces-new-race-and-training-silhouettes-to-its-awar/S/ecd0a1fe-e467-4f81-a767-0a64ab29d98f"
+      ],
+      "note": "Construction identified from the supplied product photograph and model description."
+    },
+    "cut": {
+      "status": "observed",
+      "sources": [
+        "https://news.adidas.com/running/adizero-adios-pro-4-leads-the-way-as-adidas-introduces-new-race-and-training-silhouettes-to-its-awar/S/ecd0a1fe-e467-4f81-a767-0a64ab29d98f"
+      ],
+      "note": "Construction identified from the supplied product photograph and model description."
+    },
+    "sole_material": {
+      "status": "verified",
+      "sources": [
+        "https://news.adidas.com/running/adizero-adios-pro-4-leads-the-way-as-adidas-introduces-new-race-and-training-silhouettes-to-its-awar/S/ecd0a1fe-e467-4f81-a767-0a64ab29d98f"
+      ],
+      "note": "Manufacturer specification for the named model/current reference edition."
+    },
+    "cushioning": {
+      "status": "verified",
+      "sources": [
+        "https://news.adidas.com/running/adizero-adios-pro-4-leads-the-way-as-adidas-introduces-new-race-and-training-silhouettes-to-its-awar/S/ecd0a1fe-e467-4f81-a767-0a64ab29d98f"
+      ],
+      "note": "Manufacturer specification for the named model/current reference edition."
+    },
+    "weight_g": {
+      "status": "verified",
+      "sources": [
+        "https://news.adidas.com/running/adizero-adios-pro-4-leads-the-way-as-adidas-introduces-new-race-and-training-silhouettes-to-its-awar/S/ecd0a1fe-e467-4f81-a767-0a64ab29d98f"
+      ],
+      "note": "Approx. 224 g per shoe, UK 8.5; adidas published specification."
+    },
+    "release_month": {
+      "status": "verified",
+      "sources": [
+        "https://news.adidas.com/running/adizero-adios-pro-4-leads-the-way-as-adidas-introduces-new-race-and-training-silhouettes-to-its-awar/S/ecd0a1fe-e467-4f81-a767-0a64ab29d98f"
+      ],
+      "note": "First limited drop in October 2024; wider availability followed in March 2025.",
+      "release_year": 2024
+    }
+  },
+  "7": {
+    "shoe_reference_number": {
+      "status": "verified",
+      "sources": [
+        "https://www.nike.com/jp/launch/t/kobe-5-protro-bruce-lee"
+      ],
+      "note": "Reference number and manufacturing source are for the 2020 Kobe 5 Protro Bruce Lee, not the original 2009 release."
+    },
+    "review_stars": {
+      "status": "mock",
+      "sources": [],
+      "note": "Realistic demonstration rating; not an aggregate of actual customer reviews."
+    },
+    "country_of_origin": {
+      "status": "provided",
+      "sources": [],
+      "note": "Country of Origin from the supplied reference; not a verified manufacturing location."
+    },
+    "checked_on": "2026-10-09",
+    "closure_type": {
+      "status": "observed",
+      "sources": [
+        "https://www.nike.com/jp/launch/t/kobe-5-protro-bruce-lee"
+      ],
+      "note": "Construction identified from the supplied product photograph and model description."
+    },
+    "cut": {
+      "status": "observed",
+      "sources": [
+        "https://www.nike.com/jp/launch/t/kobe-5-protro-bruce-lee"
+      ],
+      "note": "Construction identified from the supplied product photograph and model description."
+    },
+    "sole_material": {
+      "status": "verified",
+      "sources": [
+        "https://www.nike.com/jp/launch/t/kobe-5-protro-bruce-lee"
+      ],
+      "note": "Manufacturer specification for the named model/current reference edition."
+    },
+    "cushioning": {
+      "status": "verified",
+      "sources": [
+        "https://www.nike.com/jp/launch/t/kobe-5-protro-bruce-lee"
+      ],
+      "note": "Manufacturer specification for the named model/current reference edition."
+    },
+    "weight_g": {
+      "status": "estimated",
+      "sources": [
+        "https://www.nike.com/jp/launch/t/kobe-5-protro-bruce-lee"
+      ],
+      "note": "Approx. per shoe, men's US 9; estimate from structured court upper, rubber outsole and impact cushioning. Actual weight varies by size and edition."
+    },
+    "release_month": {
+      "status": "estimated",
+      "sources": [
+        "https://www.nike.com/jp/launch/t/kobe-5-protro-bruce-lee"
+      ],
+      "note": "2020 Bruce Lee Protro reference edition; archive year refers to the original Kobe 5.",
+      "release_year": 2020
+    }
+  },
+  "8": {
+    "shoe_reference_number": {
+      "status": "verified",
+      "sources": [
+        "https://www.goat.com/en-gb/sneakers/adizero-f50-elite-fg-advancement-pack-if8818"
+      ],
+      "note": "Reference number matches the catalog model and colorway; the pictured batch has not been authenticated."
+    },
+    "review_stars": {
+      "status": "mock",
+      "sources": [],
+      "note": "Realistic demonstration rating; not an aggregate of actual customer reviews."
+    },
+    "country_of_origin": {
+      "status": "provided",
+      "sources": [],
+      "note": "Country of Origin from the supplied reference; not a verified manufacturing location."
+    },
+    "checked_on": "2026-10-09",
+    "closure_type": {
+      "status": "observed",
+      "sources": [
+        "https://news.adidas.com/f50/adidas-introduces-the-new-f50---engineered-for-game-changing-speed/s/ad8f3dfe-58aa-46f1-aa37-41b2565af091"
+      ],
+      "note": "Construction identified from the supplied product photograph and model description."
+    },
+    "cut": {
+      "status": "observed",
+      "sources": [
+        "https://news.adidas.com/f50/adidas-introduces-the-new-f50---engineered-for-game-changing-speed/s/ad8f3dfe-58aa-46f1-aa37-41b2565af091"
+      ],
+      "note": "Construction identified from the supplied product photograph and model description."
+    },
+    "sole_material": {
+      "status": "verified",
+      "sources": [
+        "https://news.adidas.com/f50/adidas-introduces-the-new-f50---engineered-for-game-changing-speed/s/ad8f3dfe-58aa-46f1-aa37-41b2565af091"
+      ],
+      "note": "Manufacturer specification for the named model/current reference edition."
+    },
+    "cushioning": {
+      "status": "estimated",
+      "sources": [
+        "https://news.adidas.com/f50/adidas-introduces-the-new-f50---engineered-for-game-changing-speed/s/ad8f3dfe-58aa-46f1-aa37-41b2565af091"
+      ],
+      "note": "Construction estimate based on the supplied model and category; exact pictured edition is unverified."
+    },
+    "weight_g": {
+      "status": "estimated",
+      "sources": [
+        "https://news.adidas.com/f50/adidas-introduces-the-new-f50---engineered-for-game-changing-speed/s/ad8f3dfe-58aa-46f1-aa37-41b2565af091"
+      ],
+      "note": "Approx. per shoe, men's US 9; estimate from lightweight knit/synthetic upper, studded soleplate and thin footbed. Actual weight varies by size and edition."
+    },
+    "release_month": {
+      "status": "verified",
+      "sources": [
+        "https://news.adidas.com/f50/adidas-introduces-the-new-f50---engineered-for-game-changing-speed/s/ad8f3dfe-58aa-46f1-aa37-41b2565af091"
+      ],
+      "note": "June 2024 F50 Advancement Pack launch; pictured colorway may differ.",
+      "release_year": 2024
+    }
+  },
+  "9": {
+    "shoe_reference_number": {
+      "status": "mock",
+      "sources": [
+        "https://newbalance.newsmarket.com/latest-news/new-balance-reveals-headline-taker-pack/s/1464dfa3-8897-4898-96d2-3caf9f6ae5d1"
+      ],
+      "note": "Realistic demonstration reference number generated for this archive; not a verified manufacturer-issued reference.",
+      "source_scope": "model"
+    },
+    "review_stars": {
+      "status": "mock",
+      "sources": [],
+      "note": "Realistic demonstration rating; not an aggregate of actual customer reviews."
+    },
+    "country_of_origin": {
+      "status": "provided",
+      "sources": [],
+      "note": "Country of Origin from the supplied reference; not a verified manufacturing location."
+    },
+    "checked_on": "2026-10-09",
+    "closure_type": {
+      "status": "observed",
+      "sources": [
+        "https://newbalance.newsmarket.com/latest-news/new-balance-reveals-headline-taker-pack/s/1464dfa3-8897-4898-96d2-3caf9f6ae5d1"
+      ],
+      "note": "Construction identified from the supplied product photograph and model description."
+    },
+    "cut": {
+      "status": "observed",
+      "sources": [
+        "https://newbalance.newsmarket.com/latest-news/new-balance-reveals-headline-taker-pack/s/1464dfa3-8897-4898-96d2-3caf9f6ae5d1"
+      ],
+      "note": "Construction identified from the supplied product photograph and model description."
+    },
+    "sole_material": {
+      "status": "verified",
+      "sources": [
+        "https://newbalance.newsmarket.com/latest-news/new-balance-reveals-headline-taker-pack/s/1464dfa3-8897-4898-96d2-3caf9f6ae5d1"
+      ],
+      "note": "Manufacturer specification for the named model/current reference edition."
+    },
+    "cushioning": {
+      "status": "estimated",
+      "sources": [
+        "https://newbalance.newsmarket.com/latest-news/new-balance-reveals-headline-taker-pack/s/1464dfa3-8897-4898-96d2-3caf9f6ae5d1"
+      ],
+      "note": "Construction estimate based on the supplied model and category; exact pictured edition is unverified."
+    },
+    "weight_g": {
+      "status": "estimated",
+      "sources": [
+        "https://newbalance.newsmarket.com/latest-news/new-balance-reveals-headline-taker-pack/s/1464dfa3-8897-4898-96d2-3caf9f6ae5d1"
+      ],
+      "note": "Approx. per shoe, men's US 9; estimate from lightweight knit/synthetic upper, studded soleplate and thin footbed. Actual weight varies by size and edition."
+    },
+    "release_month": {
+      "status": "verified",
+      "sources": [
+        "https://newbalance.newsmarket.com/latest-news/new-balance-reveals-headline-taker-pack/s/1464dfa3-8897-4898-96d2-3caf9f6ae5d1"
+      ],
+      "note": "October 2022 Headline Taker edition; archive year describes the supplied pair.",
+      "release_year": 2022
+    }
+  },
+  "10": {
+    "shoe_reference_number": {
+      "status": "verified",
+      "sources": [
+        "https://www.nike.com/sg/launch/t/air-jordan-4-white-cement/"
+      ],
+      "note": "Reference number is for the 2025 White Cement retro; 1989 remains the supplied silhouette year."
+    },
+    "review_stars": {
+      "status": "mock",
+      "sources": [],
+      "note": "Realistic demonstration rating; not an aggregate of actual customer reviews."
+    },
+    "country_of_origin": {
+      "status": "provided",
+      "sources": [],
+      "note": "Country of Origin from the supplied reference; not a verified manufacturing location."
+    },
+    "checked_on": "2026-10-09",
+    "closure_type": {
+      "status": "observed",
+      "sources": [
+        "https://www.nike.com/gb/t/buty-air-jordan-4-retro-2pKZfn/HV0823-200"
+      ],
+      "note": "Construction identified from the supplied product photograph and model description."
+    },
+    "cut": {
+      "status": "observed",
+      "sources": [
+        "https://www.nike.com/gb/t/buty-air-jordan-4-retro-2pKZfn/HV0823-200"
+      ],
+      "note": "Construction identified from the supplied product photograph and model description."
+    },
+    "sole_material": {
+      "status": "verified",
+      "sources": [
+        "https://www.nike.com/gb/t/buty-air-jordan-4-retro-2pKZfn/HV0823-200"
+      ],
+      "note": "Manufacturer specification for the named model/current reference edition."
+    },
+    "cushioning": {
+      "status": "verified",
+      "sources": [
+        "https://www.nike.com/gb/t/buty-air-jordan-4-retro-2pKZfn/HV0823-200"
+      ],
+      "note": "Manufacturer specification for the named model/current reference edition."
+    },
+    "weight_g": {
+      "status": "estimated",
+      "sources": [
+        "https://www.nike.com/gb/t/buty-air-jordan-4-retro-2pKZfn/HV0823-200"
+      ],
+      "note": "Approx. per shoe, men's US 9; estimate from structured court upper, rubber outsole and impact cushioning. Actual weight varies by size and edition."
+    },
+    "release_month": {
+      "status": "verified",
+      "sources": [
+        "https://www.goat.com/en-mx/sneakers/air-jordan-4-retro-og-white-cement-2025-fv5029-100"
+      ],
+      "note": "2025 White Cement reference edition; archive year is the original silhouette year.",
+      "release_year": 2025
+    }
+  },
+  "11": {
+    "shoe_reference_number": {
+      "status": "verified",
+      "sources": [
+        "https://www.nike.com/sg/launch/t/air-jordan-3-black-cement"
+      ],
+      "note": "Reference number is for the 2024 Black Cement retro; 1988 remains the supplied silhouette year."
+    },
+    "review_stars": {
+      "status": "mock",
+      "sources": [],
+      "note": "Realistic demonstration rating; not an aggregate of actual customer reviews."
+    },
+    "country_of_origin": {
+      "status": "provided",
+      "sources": [],
+      "note": "Country of Origin from the supplied reference; not a verified manufacturing location."
+    },
+    "checked_on": "2026-10-09",
+    "closure_type": {
+      "status": "observed",
+      "sources": [
+        "https://www.nike.com/t/air-jordan-3-retro-mens-shoes-1ViayvSi/IF4396-103"
+      ],
+      "note": "Construction identified from the supplied product photograph and model description."
+    },
+    "cut": {
+      "status": "observed",
+      "sources": [
+        "https://www.nike.com/t/air-jordan-3-retro-mens-shoes-1ViayvSi/IF4396-103"
+      ],
+      "note": "Construction identified from the supplied product photograph and model description."
+    },
+    "sole_material": {
+      "status": "verified",
+      "sources": [
+        "https://www.nike.com/t/air-jordan-3-retro-mens-shoes-1ViayvSi/IF4396-103"
+      ],
+      "note": "Manufacturer specification for the named model/current reference edition."
+    },
+    "cushioning": {
+      "status": "verified",
+      "sources": [
+        "https://www.nike.com/t/air-jordan-3-retro-mens-shoes-1ViayvSi/IF4396-103"
+      ],
+      "note": "Manufacturer specification for the named model/current reference edition."
+    },
+    "weight_g": {
+      "status": "estimated",
+      "sources": [
+        "https://www.nike.com/t/air-jordan-3-retro-mens-shoes-1ViayvSi/IF4396-103"
+      ],
+      "note": "Approx. per shoe, men's US 9; estimate from structured court upper, rubber outsole and impact cushioning. Actual weight varies by size and edition."
+    },
+    "release_month": {
+      "status": "verified",
+      "sources": [
+        "https://launches.endclothing.com/product/air-jordan-3-retro-sneaker-dn3707-010"
+      ],
+      "note": "November 2024 Black Cement reference edition; archive year is the original silhouette year.",
+      "release_year": 2024
+    }
+  },
+  "12": {
+    "shoe_reference_number": {
+      "status": "verified",
+      "sources": [
+        "https://brand.assets.adidas.com/image/upload/v1727663415/TYC_voucher_cyber_lunes_sept_2024_VF_7d900119d5.pdf"
+      ],
+      "note": "Reference number matches the catalog model and colorway; the pictured batch has not been authenticated."
+    },
+    "review_stars": {
+      "status": "mock",
+      "sources": [],
+      "note": "Realistic demonstration rating; not an aggregate of actual customer reviews."
+    },
+    "country_of_origin": {
+      "status": "provided",
+      "sources": [],
+      "note": "Country of Origin from the supplied reference; not a verified manufacturing location."
+    },
+    "checked_on": "2026-10-09",
+    "closure_type": {
+      "status": "observed",
+      "sources": [
+        "https://news.adidas.com/basketball/adidas-basketball-launches-the-harden-vol-8/s/48f1c5a8-78b4-46af-a589-9135de95b6ed"
+      ],
+      "note": "Construction identified from the supplied product photograph and model description."
+    },
+    "cut": {
+      "status": "observed",
+      "sources": [
+        "https://news.adidas.com/basketball/adidas-basketball-launches-the-harden-vol-8/s/48f1c5a8-78b4-46af-a589-9135de95b6ed"
+      ],
+      "note": "Construction identified from the supplied product photograph and model description."
+    },
+    "sole_material": {
+      "status": "verified",
+      "sources": [
+        "https://news.adidas.com/basketball/adidas-basketball-launches-the-harden-vol-8/s/48f1c5a8-78b4-46af-a589-9135de95b6ed"
+      ],
+      "note": "Manufacturer specification for the named model/current reference edition."
+    },
+    "cushioning": {
+      "status": "verified",
+      "sources": [
+        "https://news.adidas.com/basketball/adidas-basketball-launches-the-harden-vol-8/s/48f1c5a8-78b4-46af-a589-9135de95b6ed"
+      ],
+      "note": "Manufacturer specification for the named model/current reference edition."
+    },
+    "weight_g": {
+      "status": "estimated",
+      "sources": [
+        "https://news.adidas.com/basketball/adidas-basketball-launches-the-harden-vol-8/s/48f1c5a8-78b4-46af-a589-9135de95b6ed"
+      ],
+      "note": "Approx. per shoe, men's US 9; estimate from structured court upper, rubber outsole and impact cushioning. Actual weight varies by size and edition."
+    },
+    "release_month": {
+      "status": "verified",
+      "sources": [
+        "https://news.adidas.com/basketball/adidas-basketball-launches-the-harden-vol-8/s/48f1c5a8-78b4-46af-a589-9135de95b6ed"
+      ],
+      "note": "Harden Vol. 8 model launch in February 2024.",
+      "release_year": 2024
+    }
+  },
+  "13": {
+    "shoe_reference_number": {
+      "status": "mock",
+      "sources": [
+        "https://newbalance.newsmarket.com/hoops/new-balance-athlete-zach-lavine-reveals-new-fresh-foam-bb-v2/s/6e958641-b74c-4e11-b8e4-390ed9e7220f"
+      ],
+      "note": "Realistic demonstration reference number generated for this archive; not a verified manufacturer-issued reference.",
+      "source_scope": "model"
+    },
+    "review_stars": {
+      "status": "mock",
+      "sources": [],
+      "note": "Realistic demonstration rating; not an aggregate of actual customer reviews."
+    },
+    "country_of_origin": {
+      "status": "provided",
+      "sources": [],
+      "note": "Country of Origin from the supplied reference; not a verified manufacturing location."
+    },
+    "checked_on": "2026-10-09",
+    "closure_type": {
+      "status": "observed",
+      "sources": [
+        "https://newbalance.newsmarket.com/hoops/new-balance-athlete-zach-lavine-reveals-new-fresh-foam-bb-v2/s/6e958641-b74c-4e11-b8e4-390ed9e7220f"
+      ],
+      "note": "Construction identified from the supplied product photograph and model description."
+    },
+    "cut": {
+      "status": "observed",
+      "sources": [
+        "https://newbalance.newsmarket.com/hoops/new-balance-athlete-zach-lavine-reveals-new-fresh-foam-bb-v2/s/6e958641-b74c-4e11-b8e4-390ed9e7220f"
+      ],
+      "note": "Construction identified from the supplied product photograph and model description."
+    },
+    "sole_material": {
+      "status": "verified",
+      "sources": [
+        "https://newbalance.newsmarket.com/hoops/new-balance-athlete-zach-lavine-reveals-new-fresh-foam-bb-v2/s/6e958641-b74c-4e11-b8e4-390ed9e7220f"
+      ],
+      "note": "Manufacturer specification for the named model/current reference edition."
+    },
+    "cushioning": {
+      "status": "verified",
+      "sources": [
+        "https://newbalance.newsmarket.com/hoops/new-balance-athlete-zach-lavine-reveals-new-fresh-foam-bb-v2/s/6e958641-b74c-4e11-b8e4-390ed9e7220f"
+      ],
+      "note": "Manufacturer specification for the named model/current reference edition."
+    },
+    "weight_g": {
+      "status": "estimated",
+      "sources": [
+        "https://newbalance.newsmarket.com/hoops/new-balance-athlete-zach-lavine-reveals-new-fresh-foam-bb-v2/s/6e958641-b74c-4e11-b8e4-390ed9e7220f"
+      ],
+      "note": "Approx. per shoe, men's US 9; estimate from structured court upper, rubber outsole and impact cushioning. Actual weight varies by size and edition."
+    },
+    "release_month": {
+      "status": "verified",
+      "sources": [
+        "https://newbalance.newsmarket.com/hoops/new-balance-athlete-zach-lavine-reveals-new-fresh-foam-bb-v2/s/6e958641-b74c-4e11-b8e4-390ed9e7220f"
+      ],
+      "note": "Fresh Foam BB v2 model launch in February 2024; exact pictured colorway date may differ.",
+      "release_year": 2024
+    }
+  },
+  "14": {
+    "shoe_reference_number": {
+      "status": "verified",
+      "sources": [
+        "https://leisure-center.com/products/az-k111-051-1-black-converse-red-heart-chuck-70-sneakers"
+      ],
+      "note": "Reference number matches the catalog model and colorway; the pictured batch has not been authenticated."
+    },
+    "review_stars": {
+      "status": "mock",
+      "sources": [],
+      "note": "Realistic demonstration rating; not an aggregate of actual customer reviews."
+    },
+    "country_of_origin": {
+      "status": "provided",
+      "sources": [],
+      "note": "Country of Origin from the supplied reference; not a verified manufacturing location."
+    },
+    "checked_on": "2026-10-09",
+    "closure_type": {
+      "status": "observed",
+      "sources": [
+        "https://www.converse.com/it/en/shop/p/converse-x-play-comme-des-garcons-chuck-70-unisex/150206MP.html"
+      ],
+      "note": "Construction identified from the supplied product photograph and model description."
+    },
+    "cut": {
+      "status": "observed",
+      "sources": [
+        "https://www.converse.com/it/en/shop/p/converse-x-play-comme-des-garcons-chuck-70-unisex/150206MP.html"
+      ],
+      "note": "Construction identified from the supplied product photograph and model description."
+    },
+    "sole_material": {
+      "status": "verified",
+      "sources": [
+        "https://www.converse.com/it/en/shop/p/converse-x-play-comme-des-garcons-chuck-70-unisex/150206MP.html"
+      ],
+      "note": "Manufacturer specification for the named model/current reference edition."
+    },
+    "cushioning": {
+      "status": "verified",
+      "sources": [
+        "https://www.converse.com/it/en/shop/p/converse-x-play-comme-des-garcons-chuck-70-unisex/150206MP.html"
+      ],
+      "note": "Manufacturer specification for the named model/current reference edition."
+    },
+    "weight_g": {
+      "status": "estimated",
+      "sources": [
+        "https://www.converse.com/it/en/shop/p/converse-x-play-comme-des-garcons-chuck-70-unisex/150206MP.html"
+      ],
+      "note": "Approx. per shoe, men's US 9; estimate from casual upper construction, rubber outsole and footbed. Actual weight varies by size and edition."
+    },
+    "release_month": {
+      "status": "verified",
+      "sources": [
+        "https://www.goat.com/sneakers/comme-des-garcons-play-x-chuck-taylor-1970-low-top-150206c"
+      ],
+      "note": "May 2015 release of the 150206C reference edition.",
+      "release_year": 2015
+    }
+  },
+  "15": {
+    "shoe_reference_number": {
+      "status": "verified",
+      "sources": [
+        "https://www.nike.com/jp/en/t/v2k-run-womens-shoes-eNkGettO/FD0736-100"
+      ],
+      "note": "Reference number matches the catalog model and colorway; the pictured batch has not been authenticated."
+    },
+    "review_stars": {
+      "status": "verified",
+      "sources": [
+        "https://www.nike.com/jp/en/t/v2k-run-womens-shoes-eNkGettO/FD0736-100"
+      ],
+      "note": "Nike Japan product-page aggregate: 4.7/5; includes incentivized ratings and may combine colorways."
+    },
+    "country_of_origin": {
+      "status": "provided",
+      "sources": [],
+      "note": "Country of Origin from the supplied reference; not a verified manufacturing location."
+    },
+    "checked_on": "2026-10-09",
+    "closure_type": {
+      "status": "observed",
+      "sources": [
+        "https://www.nike.com/t/v2k-run-womens-shoes-bVNxzR1U/FD0736-100"
+      ],
+      "note": "Construction identified from the supplied product photograph and model description."
+    },
+    "cut": {
+      "status": "observed",
+      "sources": [
+        "https://www.nike.com/t/v2k-run-womens-shoes-bVNxzR1U/FD0736-100"
+      ],
+      "note": "Construction identified from the supplied product photograph and model description."
+    },
+    "sole_material": {
+      "status": "verified",
+      "sources": [
+        "https://www.nike.com/t/v2k-run-womens-shoes-bVNxzR1U/FD0736-100"
+      ],
+      "note": "Manufacturer specification for the named model/current reference edition."
+    },
+    "cushioning": {
+      "status": "verified",
+      "sources": [
+        "https://www.nike.com/t/v2k-run-womens-shoes-bVNxzR1U/FD0736-100"
+      ],
+      "note": "Manufacturer specification for the named model/current reference edition."
+    },
+    "weight_g": {
+      "status": "estimated",
+      "sources": [
+        "https://www.nike.com/t/v2k-run-womens-shoes-bVNxzR1U/FD0736-100"
+      ],
+      "note": "Approx. per shoe, women's US 8; estimate from casual upper construction, rubber outsole and footbed. Actual weight varies by size and edition."
+    },
+    "release_month": {
+      "status": "verified",
+      "sources": [
+        "https://www.goat.com/sneakers/wmns-runtekk-summit-white-fd0736-100"
+      ],
+      "note": "June 2023 Summit White reference edition, as listed by GOAT.",
+      "release_year": 2023
+    }
+  },
+  "16": {
+    "shoe_reference_number": {
+      "status": "verified",
+      "sources": [
+        "https://us.puma.com/us/en/pd/speedcat_og/398846"
+      ],
+      "note": "Reference number matches the catalog model and colorway; the pictured batch has not been authenticated."
+    },
+    "review_stars": {
+      "status": "verified",
+      "sources": [
+        "https://us.puma.com/us/en/pd/speedcat_og/398846"
+      ],
+      "note": "PUMA US product-page aggregate: 4.4/5; may combine reviews across sizes and colorways."
+    },
+    "country_of_origin": {
+      "status": "provided",
+      "sources": [],
+      "note": "Country of Origin from the supplied reference; not a verified manufacturing location."
+    },
+    "checked_on": "2026-10-09",
+    "closure_type": {
+      "status": "observed",
+      "sources": [
+        "https://us.puma.com/us/en/pd/speedcat_og/398846"
+      ],
+      "note": "Construction identified from the supplied product photograph and model description."
+    },
+    "cut": {
+      "status": "observed",
+      "sources": [
+        "https://us.puma.com/us/en/pd/speedcat_og/398846"
+      ],
+      "note": "Construction identified from the supplied product photograph and model description."
+    },
+    "sole_material": {
+      "status": "verified",
+      "sources": [
+        "https://us.puma.com/us/en/pd/speedcat_og/398846"
+      ],
+      "note": "Manufacturer specification for the named model/current reference edition."
+    },
+    "cushioning": {
+      "status": "estimated",
+      "sources": [
+        "https://us.puma.com/us/en/pd/speedcat_og/398846"
+      ],
+      "note": "Construction estimate based on the supplied model and category; exact pictured edition is unverified."
+    },
+    "weight_g": {
+      "status": "estimated",
+      "sources": [
+        "https://us.puma.com/us/en/pd/speedcat_og/398846"
+      ],
+      "note": "Approx. per shoe, men's US 9; estimate from casual upper construction, rubber outsole and footbed. Actual weight varies by size and edition."
+    },
+    "release_month": {
+      "status": "verified",
+      "sources": [
+        "https://jp.puma.com/jp/ja/press-releases/JP_AW24_xBU_Other_PressReleases_speedcat"
+      ],
+      "note": "June 2024 Speedcat OG relaunch; archive year is the 1999 silhouette debut.",
+      "release_year": 2024
+    }
+  },
+  "17": {
+    "shoe_reference_number": {
+      "status": "verified",
+      "sources": [
+        "https://novelship.com/es-us/onitsuka-tiger-mexico-66-birch-peacoat-1183-c102-200"
+      ],
+      "note": "Reference number matches the catalog model and colorway; the pictured batch has not been authenticated."
+    },
+    "review_stars": {
+      "status": "mock",
+      "sources": [],
+      "note": "Realistic demonstration rating; not an aggregate of actual customer reviews."
+    },
+    "country_of_origin": {
+      "status": "provided",
+      "sources": [],
+      "note": "Country of Origin from the supplied reference; not a verified manufacturing location."
+    },
+    "checked_on": "2026-10-09",
+    "closure_type": {
+      "status": "observed",
+      "sources": [
+        "https://www.onitsukatiger.com/gb/en-gb/mexico-66/p/1183c102-752.html"
+      ],
+      "note": "Construction identified from the supplied product photograph and model description."
+    },
+    "cut": {
+      "status": "observed",
+      "sources": [
+        "https://www.onitsukatiger.com/gb/en-gb/mexico-66/p/1183c102-752.html"
+      ],
+      "note": "Construction identified from the supplied product photograph and model description."
+    },
+    "sole_material": {
+      "status": "verified",
+      "sources": [
+        "https://www.onitsukatiger.com/gb/en-gb/mexico-66/p/1183c102-752.html"
+      ],
+      "note": "Manufacturer specification for the named model/current reference edition."
+    },
+    "cushioning": {
+      "status": "verified",
+      "sources": [
+        "https://www.onitsukatiger.com/gb/en-gb/mexico-66/p/1183c102-752.html"
+      ],
+      "note": "Manufacturer specification for the named model/current reference edition."
+    },
+    "weight_g": {
+      "status": "estimated",
+      "sources": [
+        "https://www.onitsukatiger.com/gb/en-gb/mexico-66/p/1183c102-752.html"
+      ],
+      "note": "Approx. per shoe, men's US 9; estimate from casual upper construction, rubber outsole and footbed. Actual weight varies by size and edition."
+    },
+    "release_month": {
+      "status": "estimated",
+      "sources": [],
+      "note": "Estimated spring catalog window for the current edition; not a confirmed 1966 launch month."
+    }
+  },
+  "18": {
+    "shoe_reference_number": {
+      "status": "mock",
+      "sources": [
+        "https://newbalance.newsmarket.com/latest-news/new-balance-reveals-headline-taker-pack/s/1464dfa3-8897-4898-96d2-3caf9f6ae5d1"
+      ],
+      "note": "Realistic demonstration reference number generated for this archive; not a verified manufacturer-issued reference.",
+      "source_scope": "model"
+    },
+    "review_stars": {
+      "status": "mock",
+      "sources": [],
+      "note": "Realistic demonstration rating; not an aggregate of actual customer reviews."
+    },
+    "country_of_origin": {
+      "status": "provided",
+      "sources": [],
+      "note": "Country of Origin from the supplied reference; not a verified manufacturing location."
+    },
+    "checked_on": "2026-10-09",
+    "closure_type": {
+      "status": "observed",
+      "sources": [
+        "https://newbalance.newsmarket.com/latest-news/new-balance-reveals-headline-taker-pack/s/1464dfa3-8897-4898-96d2-3caf9f6ae5d1"
+      ],
+      "note": "Construction identified from the supplied product photograph and model description."
+    },
+    "cut": {
+      "status": "observed",
+      "sources": [
+        "https://newbalance.newsmarket.com/latest-news/new-balance-reveals-headline-taker-pack/s/1464dfa3-8897-4898-96d2-3caf9f6ae5d1"
+      ],
+      "note": "Construction identified from the supplied product photograph and model description."
+    },
+    "sole_material": {
+      "status": "verified",
+      "sources": [
+        "https://newbalance.newsmarket.com/latest-news/new-balance-reveals-headline-taker-pack/s/1464dfa3-8897-4898-96d2-3caf9f6ae5d1"
+      ],
+      "note": "Manufacturer specification for the named model/current reference edition."
+    },
+    "cushioning": {
+      "status": "estimated",
+      "sources": [
+        "https://newbalance.newsmarket.com/latest-news/new-balance-reveals-headline-taker-pack/s/1464dfa3-8897-4898-96d2-3caf9f6ae5d1"
+      ],
+      "note": "Construction estimate based on the supplied model and category; exact pictured edition is unverified."
+    },
+    "weight_g": {
+      "status": "estimated",
+      "sources": [
+        "https://newbalance.newsmarket.com/latest-news/new-balance-reveals-headline-taker-pack/s/1464dfa3-8897-4898-96d2-3caf9f6ae5d1"
+      ],
+      "note": "Approx. per shoe, men's US 9; estimate from lightweight knit/synthetic upper, studded soleplate and thin footbed. Actual weight varies by size and edition."
+    },
+    "release_month": {
+      "status": "estimated",
+      "sources": [],
+      "note": "October 2022 Headline Taker edition; archive year describes the supplied pair.",
+      "release_year": 2022
+    }
+  },
+  "19": {
+    "shoe_reference_number": {
+      "status": "mock",
+      "sources": [
+        "https://th.anta.com/en/pages/technology-showcase"
+      ],
+      "note": "Realistic demonstration reference number generated for this archive; not a verified manufacturer-issued reference.",
+      "source_scope": "model"
+    },
+    "review_stars": {
+      "status": "mock",
+      "sources": [],
+      "note": "Realistic demonstration rating; not an aggregate of actual customer reviews."
+    },
+    "country_of_origin": {
+      "status": "provided",
+      "sources": [],
+      "note": "Country of Origin from the supplied reference; not a verified manufacturing location."
+    },
+    "checked_on": "2026-10-09",
+    "closure_type": {
+      "status": "observed",
+      "sources": [
+        "https://th.anta.com/en/pages/technology-showcase"
+      ],
+      "note": "Construction identified from the supplied product photograph and model description."
+    },
+    "cut": {
+      "status": "observed",
+      "sources": [
+        "https://th.anta.com/en/pages/technology-showcase"
+      ],
+      "note": "Construction identified from the supplied product photograph and model description."
+    },
+    "sole_material": {
+      "status": "estimated",
+      "sources": [
+        "https://th.anta.com/en/pages/technology-showcase"
+      ],
+      "note": "Construction estimate based on the supplied model and category; exact pictured edition is unverified."
+    },
+    "cushioning": {
+      "status": "estimated",
+      "sources": [
+        "https://th.anta.com/en/pages/technology-showcase"
+      ],
+      "note": "Construction estimate based on the supplied model and category; exact pictured edition is unverified."
+    },
+    "weight_g": {
+      "status": "estimated",
+      "sources": [
+        "https://th.anta.com/en/pages/technology-showcase"
+      ],
+      "note": "Approx. per shoe, men's US 9; estimate from structured court upper, rubber outsole and impact cushioning. Actual weight varies by size and edition."
+    },
+    "release_month": {
+      "status": "estimated",
+      "sources": [],
+      "note": "Estimated mid-2023 model launch window; exact pictured edition date is unconfirmed.",
+      "release_year": 2023
+    }
+  },
+  "20": {
+    "shoe_reference_number": {
+      "status": "mock",
+      "sources": [
+        "https://anta.com/"
+      ],
+      "note": "Realistic demonstration reference number generated for this archive; not a verified manufacturer-issued reference.",
+      "source_scope": "model"
+    },
+    "review_stars": {
+      "status": "mock",
+      "sources": [],
+      "note": "Realistic demonstration rating; not an aggregate of actual customer reviews."
+    },
+    "country_of_origin": {
+      "status": "provided",
+      "sources": [],
+      "note": "Country of Origin from the supplied reference; not a verified manufacturing location."
+    },
+    "checked_on": "2026-10-09",
+    "closure_type": {
+      "status": "observed",
+      "sources": [],
+      "note": "Construction identified from the supplied product photograph and model description."
+    },
+    "cut": {
+      "status": "observed",
+      "sources": [],
+      "note": "Construction identified from the supplied product photograph and model description."
+    },
+    "sole_material": {
+      "status": "estimated",
+      "sources": [],
+      "note": "Construction estimate based on the supplied model and category; exact pictured edition is unverified."
+    },
+    "cushioning": {
+      "status": "estimated",
+      "sources": [],
+      "note": "Construction estimate based on the supplied model and category; exact pictured edition is unverified."
+    },
+    "weight_g": {
+      "status": "estimated",
+      "sources": [],
+      "note": "Approx. per shoe, men's US 9; estimate from structured court upper, rubber outsole and impact cushioning. Actual weight varies by size and edition."
+    },
+    "release_month": {
+      "status": "estimated",
+      "sources": [],
+      "note": "Estimated autumn 2023 catalog window from the supplied archive year; exact release date is unconfirmed.",
+      "release_year": 2023
+    }
+  }
+}

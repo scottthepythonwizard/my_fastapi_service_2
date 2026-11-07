@@ -1,0 +1,9 @@
+# Keep the original unauthenticated API backup for local rollback only.
+api/index_v1_backup.py
+.venv/
+.test-output/
+__pycache__/
+screenshots/
+
+.env
+.env.*

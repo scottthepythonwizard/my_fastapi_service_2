@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f4ed">
+  <meta name="description" content="Sole Compare. Pick two sneakers from the SOLE archive. See every detail, side by side.">
+  <title>Sole Compare — Two pairs. One view.</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23d9ff50'/%3E%3Ctext x='16' y='47' font-size='44' font-family='Arial' font-weight='900'%3ES%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="archive.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="config.js"></script>
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#collection">Skip to sneaker selection</a>
+  <header class="site-header page-width">
+    <a class="wordmark" id="archiveHome" href="http://127.0.0.1:8000/archive" aria-label="SOLE Compare — open Archive">SOLE<span>.</span><small>COMPARE</small></a>
+    <a class="archive-link micro" id="archiveLink" href="http://127.0.0.1:8000/archive">BACK TO ARCHIVE ↗</a>
+  </header>
+  <main class="page-width">
+    <section class="hero compare-hero" aria-labelledby="pageHeading">
+      <div class="hero-copy">
+        <p class="micro">SOLE COMPARE <span class="divider">|</span> FROM THE ARCHIVE</p>
+        <div class="hero-message">
+          <h1 id="pageHeading">TWO PAIRS.<br>ONE VIEW.</h1>
+          <p>Different stories. Every detail. Find the pair that feels like you.</p>
+          <a class="pill explore-link" href="#collection">Choose your pairs <span aria-hidden="true">⟶</span></a>
+        </div>
+        <div class="hero-bottom">
+          <div class="archive-stat"><strong>14</strong><span class="micro">DETAILS.<br>SIDE BY SIDE.</span></div>
+          <span class="asterisk" aria-hidden="true">✳</span>
+        </div>
+      </div>
+      <div class="selection-board" id="selection" aria-labelledby="selectionHeading">
+        <div class="board-heading"><h2 class="micro" id="selectionHeading">YOUR TWO, TOGETHER.</h2><span class="count-badge micro" id="selectionCount">0 / 2 SELECTED</span></div>
+        <div class="selection-slots">
+          <div class="selection-slot">
+            <label class="micro" for="pairOne">PAIR / 01</label>
+            <select id="pairOne" disabled><option value="">Choose first sneaker</option></select>
+            <div id="slotOne" class="slot-host"></div>
+          </div>
+          <div class="selection-slot">
+            <label class="micro" for="pairTwo">PAIR / 02</label>
+            <select id="pairTwo" disabled><option value="">Choose second sneaker</option></select>
+            <div id="slotTwo" class="slot-host"></div>
+          </div>
+        </div>
+        <div class="board-footer"><p id="selectionHint">Choose two distinct sneakers to begin.</p><button id="compareButton" class="pill" type="button" disabled>Compare pairs ↗</button></div>
+      </div>
+    </section>
+    <div class="editorial-line micro"><span>FOR THE LOVE OF THE PAIR.</span><span>THE ARCHIVE, SIDE BY SIDE.</span></div>
+    <p id="announcement" class="sr-only" role="status" aria-live="polite"></p>
+    <section class="collection comparison" id="comparison" aria-labelledby="comparisonHeading" hidden>
+      <div class="collection-heading"><div><p class="micro muted">01 / THE COMPARISON</p><h2 id="comparisonHeading" tabindex="-1">A closer look, together.</h2></div><span class="count-badge micro" id="differenceCount"></span></div>
+      <div class="comparison-tools"><label class="difference-toggle"><input id="differencesOnly" type="checkbox"> Show differences only</label><div><button class="reset-button" id="swapPairs" type="button">Swap pairs ↔</button><a class="reset-button" href="#selection">Change a pair ↗</a></div></div>
+      <div id="comparisonTable"></div>
+      <p><a class="pill" id="fitLink" href="http://127.0.0.1:8002">Find my size in SoleFit ↗</a></p>
+      <p class="catalog-note">Prices are archive references. Estimated specifications retain the Archive’s labels. Release month may refer to a later edition than the original release year.</p>
+    </section>
+    <section class="collection" id="collection" aria-labelledby="collectionHeading">
+      <div class="collection-heading"><div><p class="micro muted">02 / CHOOSE YOUR PAIRS</p><h2 id="collectionHeading">Start with a little curiosity.</h2></div><span class="count-badge micro" id="resultCount" role="status">LOADING</span></div>
+      <form class="toolbar compare-toolbar" id="searchForm" role="search">
+        <div class="search-field"><label class="sr-only" for="searchInput">Find a sneaker</label><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="Find a brand, model, or colorway…" autocomplete="off"><button type="submit" aria-label="Search sneakers">⟶</button></div>
+        <label class="select-field"><span class="micro">BRAND</span><select id="brandFilter"><option value="">All brands</option></select></label>
+        <button class="reset-button" id="resetFilters" type="button">Reset filters ↺</button>
+      </form>
+      <p class="catalog-note" id="catalogNote">Select a card or use the two selectors above. Your selection stays with you while you browse.</p>
+      <div class="sneaker-list" id="sneakerList" aria-busy="true"><p class="loading-message" role="status">Opening the archive…</p></div>
+    </section>
+  </main>
+  <footer class="page-width site-footer"><a class="wordmark" href="#">SOLE<span>.</span></a><p>Good shoes. Great stories.</p><span class="micro">SOLE COMPARE / FOR THE LOVE OF THE PAIR. ↗</span></footer>
+</body>
+</html>

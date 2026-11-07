@@ -1,0 +1,14 @@
+{
+  "name": "sole-compare",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Compare two sneakers from the existing SOLE FastAPI archive.",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "start": "node start.mjs",
+    "start:frontend": "node server.mjs",
+    "test": "node --test tests/core.test.js",
+    "test:live": "node --test tests/live.test.js tests/startup.test.js"
+  }
+}

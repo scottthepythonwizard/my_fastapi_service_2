@@ -1,5 +1,13 @@
-.venv/
+.env
+.env.*
+!.env.example
+.migration-backup/
 __pycache__/
-*.pyc
-node_modules/
 .test-output/
+*.pyc
+
+.local/
+.vercel/
+.venv/
+node_modules/
+output/
