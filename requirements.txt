@@ -1,1 +1,6 @@
--r my_fastapi_service_sole_list/requirements.txt
+fastapi
+uvicorn
+pydantic>=2.9,<3
+
+psycopg[binary]>=3.2,<4.0
+python-dotenv>=1.0,<2.0
