@@ -48,6 +48,8 @@ Each row holds a complete sneaker. The catalog has no dependent database tables.
 - The updated row remained after restarting Archive. The API then deleted it, SQL confirmed its absence, and a second restart preserved the deletion. Supabase finished with the 20 original records.
 - Malformed JSON, missing fields, invalid data types and values, duplicate references, missing IDs, and unauthorized writes returned the expected errors. A simulated database outage returned a sanitized 503.
 
-The Windows launcher and all six Compare live tests passed against Supabase. Vercel deployment could not proceed from this workspace because there was no authenticated Vercel connection or linked checkout. For hosting, configure Archive and Fit as separate FastAPI apps and set their cross-site origins. Host Compare separately with its public Archive and Fit origins. Set the database URL and admin token in the Archive deployment's environment.
+The Windows launcher and all six Compare live tests passed against Supabase. The shared FastAPI application is now deployed to Vercel at `https://my-fastapi-service-2.vercel.app`. Production uses the root `app.py` entry point, Python 3.12, and the Singapore function region. Archive, Fit, and Compare share this origin.
+
+The production deployment stores `SOLE_DATABASE_URL` and `SOLE_ADMIN_TOKEN` as Vercel secrets. Phase 7 verification exercises HTTPS API requests, directly checks the corresponding Supabase rows, and redeploys the API to confirm persistence. Local evidence files are saved under `output/phase7/`. Source pushes to the GitHub `main` branch trigger Vercel production builds.
 
 References: [Supabase PostgreSQL connections](https://supabase.com/docs/guides/database/connecting-to-postgres), [Supabase TLS configuration](https://supabase.com/docs/guides/platform/ssl-enforcement), [Vercel FastAPI](https://vercel.com/docs/frameworks/backend/fastapi).

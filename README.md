@@ -2,6 +2,16 @@
 
 Sole Archive, Sole Fit, and Sole Compare share a Supabase sneaker catalog through FastAPI.
 
+## Live websites
+
+- [Sole Archive](https://my-fastapi-service-2.vercel.app/archive)
+- [Sole Fit](https://my-fastapi-service-2.vercel.app/fit/)
+- [Sole Compare](https://my-fastapi-service-2.vercel.app/compare/)
+- [API health](https://my-fastapi-service-2.vercel.app/health)
+- [API documentation](https://my-fastapi-service-2.vercel.app/docs)
+
+Vercel runs the shared FastAPI server in production. The server connects to Supabase using production secrets. Opening these URLs works independently of the local launcher.
+
 ## Start locally
 
 1. Create a Python environment with `python -m venv my_fastapi_service_sole_list/.venv`.
