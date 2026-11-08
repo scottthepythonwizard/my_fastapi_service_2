@@ -1,0 +1,1 @@
+-r my_fastapi_service_sole_list/requirements.txt

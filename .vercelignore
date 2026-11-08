@@ -1,0 +1,14 @@
+.env
+.env.*
+.git/
+**/.git/
+.local/
+.vscode/
+.venv/
+**/.venv/
+**/__pycache__/
+**/*.pyc
+**/.test-output/
+**/node_modules/
+**/*_backup.py
+output/
