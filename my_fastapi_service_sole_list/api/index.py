@@ -235,6 +235,31 @@ def frontend():
     return FileResponse(ROOT / "index.html")
 
 
+@app.get("/account", include_in_schema=False)
+def account_page():
+    return FileResponse(ROOT / "account.html", headers={"Cache-Control": "no-store"})
+
+
+@app.get("/account.js", include_in_schema=False)
+def account_script():
+    return FileResponse(ROOT / "account.js", media_type="text/javascript", headers={"Cache-Control": "no-cache"})
+
+
+@app.get("/account.css", include_in_schema=False)
+def account_styles():
+    return FileResponse(ROOT / "account.css", media_type="text/css")
+
+
+@app.get("/account-config.js", include_in_schema=False)
+def account_config():
+    # Publishable key only. Never send a database password, service key or admin token.
+    config = {"url": "https://xwqdcqpxjjctwugbssqr.supabase.co",
+              "publishableKey": "sb_publishable_dn4hmTlJBFuQviEoTJ45BA_SWZQkIV5",
+              "catalogKey": API_KEY}
+    return Response("window.SOLE_ACCOUNT_CONFIG = " + json.dumps(config) + ";",
+                    media_type="text/javascript", headers={"Cache-Control": "no-store"})
+
+
 @app.get("/config.js", include_in_schema=False)
 def frontend_config():
     fit_origin = json.dumps("/fit" if LOCAL_SITES else os.environ.get("SOLE_FIT_ORIGIN", "http://127.0.0.1:8002"))
