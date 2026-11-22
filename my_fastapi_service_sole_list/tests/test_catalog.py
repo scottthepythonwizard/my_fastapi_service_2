@@ -12,6 +12,23 @@ from pydantic import ValidationError
 import catalog
 from api.index import API_KEY, API_VERSION, app
 from index22 import app as compatibility_app
+from catalog_repository import CatalogRepository
+
+
+class DatabaseRowCompatibilityTests(unittest.TestCase):
+    def test_database_timestamp_keeps_existing_catalog_response_shape(self):
+        expected = catalog.catalog_items()[0]
+        stored = {key: value for key, value in expected.items() if key != 'attributes'}
+        stored.update(expected['attributes'])
+        stored['created_at'] = datetime(2026, 11, 1, tzinfo=timezone.utc)
+        with patch.dict('os.environ', {'SOLE_DATABASE_URL': 'postgresql://test'}), \
+                patch('catalog_repository.psycopg.connect') as connect, \
+                patch.object(app.state, 'database', CatalogRepository()):
+            connect.return_value.__enter__.return_value.cursor.return_value.__enter__.return_value.fetchall.return_value = [stored]
+            with TestClient(app, raise_server_exceptions=False) as client:
+                response = client.get('/api/v1/catalog/1', headers={'x-api-key': API_KEY})
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(response.json(), expected)
 
 
 class CatalogTests(unittest.TestCase):

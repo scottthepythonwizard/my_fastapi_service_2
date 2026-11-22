@@ -26,7 +26,11 @@ def _item(row):
     attributes = {field: row.pop(field) for field in SneakerAttributes.model_fields}
     if attributes['year'] is None:
         attributes['year'] = UNKNOWN
-    return {**row, 'attributes': attributes}
+    return {
+        'id': row['id'], 'image_url': row['image_url'],
+        'image_note': row['image_note'], 'provenance': row['provenance'],
+        'attributes': attributes,
+    }
 
 
 class CatalogRepository:
