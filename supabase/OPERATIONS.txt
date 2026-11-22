@@ -1,0 +1,134 @@
+SOLE DATABASE CONSOLIDATION — APPLIED 22 NOVEMBER 2026
+
+Production project: xwqdcqpxjjctwugbssqr (Sole)
+Application: https://my-fastapi-service-2.vercel.app
+
+Final structure
+sole.sneakers: one complete record per sneaker, 25 columns including generated
+integer ID, category, original timestamp, reference, images and provenance.
+public.favorites: (user_id,sneaker_id) primary key, ownership default auth.uid(),
+created_at timestamp. User and sneaker foreign keys both use ON DELETE CASCADE.
+Deleting a sneaker removes only favorites referencing it. Deleting an account
+removes its favorites and administrator membership. Remaining sneakers survive.
+public.sole_admins: the existing administrator membership table, unchanged.
+
+Applied changes
+Versioned migration 20261122094223 consolidated 19 detail columns. All category
+tables had identical types, nullability and CHECK rules. Exact JSONB comparison
+verified every original value before explicit DROP TABLE ... RESTRICT commands.
+No missing, duplicate, mismatched or orphan category details were found.
+The category-enforcement triggers and their obsolete function were removed.
+Three existing admin RPC signatures/permissions were preserved and their bodies
+updated. No views or remaining stored-function category references were found.
+External scripts outside this workspace/project were not available to inspect.
+
+Existing IDs, sequence, timestamps, references, records and admin membership were
+preserved. Identity allocation continues forward; tests intentionally consume
+sequence numbers even when transactions roll back. Gaps are normal.
+No original favorites existed. A synthetic pre-existing favorite was verified
+through migration in isolation; the live table remained empty after cleanup.
+
+Access
+Signed-in users can read the complete catalog. Catalog INSERT/UPDATE/DELETE
+requires membership in sole_admins under RLS. The existing dedicated backend
+role and secret-protected FastAPI administrative routes remain trusted backend
+access. Never put the backend database URL or admin bearer token in browser code.
+Favorites SELECT/INSERT/DELETE are restricted to auth.uid(); no UPDATE grant.
+Users cannot write sole_admins, including granting themselves membership.
+Admin membership does not grant access to another user's favorites.
+All three application tables have RLS enabled.
+
+Migration 20261122094751 enabled the sole Data API schema alongside the existing
+public and graphql_public schemas. Authenticator's pgrst.db_schemas now explicitly
+sets that list. This SQL override takes precedence over Dashboard schema lists;
+future schema exposure changes must update it, or reset it after configuring
+the Dashboard. The recovery archive is not exposed. Anonymous direct access
+remains denied; public website catalog access continues through FastAPI.
+
+Client usage
+Use sole-client.example.js with your existing Supabase Auth sign-in session.
+addFavorite(1) ignores duplicates without changing the original timestamp.
+listFavorites() returns complete sneaker details, isFavorite(1) checks status,
+and removeFavorite(1) succeeds predictably even if the favorite was absent.
+createSneaker(fullRecord), updateSneaker(id,fields), deleteSneaker(id) use RLS.
+Supply every required detail for new sneakers; omit generated id/created_at.
+Check each returned error in the calling UI. The example module is delivered;
+favorite buttons/sign-in screens were not added to the existing static sites.
+
+Appointing the first administrator
+One existing administrator was preserved. To appoint another, the trusted
+project owner must verify the account's UUID in Authentication > Users, then
+run the following in the owner-only Supabase SQL Editor (replace the UUID):
+
+INSERT INTO public.sole_admins(user_id)
+SELECT id FROM auth.users WHERE id='VERIFIED-USER-UUID'::uuid
+ON CONFLICT(user_id) DO NOTHING;
+
+Never expose this SQL as a browser RPC or allow clients to edit membership.
+
+Backups and recovery
+Before modifying data, a private export of rows, column definitions, constraints,
+policies, grants, functions and triggers was saved under the ignored local path
+.local/consolidation-backup/snapshot.json. It contains account identifiers and
+must remain private. A second, database-local archive was created transactionally
+in sole_recovery_20261122 before changing sneaker rows. Access to that schema
+was revoked from public, anon, authenticated and the runtime role. Archive tables
+are snapshots, without application constraints or indexes. Do not serve them.
+
+For rollback: stop writes and save a fresh private export first. Review and run
+supabase/recovery/restore_category_tables.sql as project owner. It refuses to
+discard changes when catalog rows differ from the migration snapshot. Reconcile
+later changes manually rather than bypassing that guard. The tested procedure
+recreates the original category tables, constraints, triggers, policies, grants
+and admin RPCs. Favorites continue referencing the same parent IDs.
+The API mapper fix remains compatible with flat data only: deploy the matching
+previous split-schema application adapter if restoring the split architecture.
+To reverse the Data API override separately:
+ALTER ROLE authenticator RESET pgrst.db_schemas;
+NOTIFY pgrst,'reload config';
+Keep the private archive until recovery is no longer needed; do not delete it
+as part of ordinary cleanup. Credentials/auth user profiles are not included in
+the application snapshot; this is not a full Supabase disaster-recovery backup.
+
+Verification
+31 isolated PGlite PostgreSQL checks: passed, including recovery, exact field
+comparison, ambiguous-data rejection and administrator/two-user/anon RLS.
+7 live PostgreSQL policy test groups: passed, with transactional test users and
+existing admin membership. Test users, favorites and sneaker were rolled back.
+13 FastAPI catalog regressions: passed (external database driver mocked).
+30 API acceptance checks: passed against real Supabase, with four separate API
+processes proving create/update/delete persistence after restart. Direct SQL
+confirmed writes; original catalog digest matched after cleanup. The production
+catalog check also passed following deployment of commit c110b008f7808f5f1ef6fd0bceb0675dcf68327a.
+8 production HTTP checks: passed; catalog and Fit return 20 records, all three
+site pages return 200; anonymous Data API requests return 401 / SQLSTATE 42501.
+
+Limits
+RLS was tested by real PostgreSQL roles and auth.uid() claim contexts, including
+on live Supabase. New email/password sign-ins, JWT issuance/verification and
+interactive favorite buttons were not exercised. No existing user's password
+or session was accessed. Website page/catalog checks were HTTP checks, not a
+visual browser walkthrough. Client examples are prepared code, not a deployed
+favorites interface. Local and hosted existing catalog APIs are deployed.
+
+Advisories
+No new Supabase security advisory was reported. Existing leaked-password
+protection is disabled; this Auth setting was left unchanged. Details:
+https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection
+Performance notices: private snapshot tables have no primary keys (archival
+copies) and authenticated catalog SELECT matches both the read and admin policy.
+These notices do not bypass RLS; the catalog contains 20 records.
+
+Evidence
+output/consolidation/Sole_Consolidation_Report.html
+output/consolidation/isolated-tests.json
+output/consolidation/live-access.json
+output/consolidation/live-preservation.json
+output/consolidation/production-smoke.json
+output/functional-testing/evidence-e390c0a6fc19.json
+
+Read-only owner verification: supabase/verify_consolidation.sql
+Repeat live policy verification: supabase/tests/verify_live_access.sql
+Isolated tests require the ignored private snapshot-derived fixture and pinned
+@electric-sql/pglite 0.5.17 under .local/sole-migration-test. This is deliberately
+not a public export of your records or administrator identifiers.
