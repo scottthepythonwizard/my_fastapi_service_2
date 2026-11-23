@@ -1,11 +1,11 @@
 import { createServer } from "node:http";
-import { readFile, readdir } from "node:fs/promises";
+import { readFile } from "node:fs/promises";
 
 const assets = new Map([
   ["/", ["index.html", "text/html"]], ["/index.html", ["index.html", "text/html"]],
   ["/archive.css", ["archive.css", "text/css"]], ["/style.css", ["style.css", "text/css"]],
   ...["app.js", "components.js", "core.js"].map((name) => [`/${name}`, [name, "text/javascript"]]),
-  ...["account.js", "admin.js", "account.css", "supabase-2.119.2.js"].map((name) =>
+  ...["account.js", "account.css", "supabase-2.119.2.js"].map((name) =>
     [`/sole-shared/${name}`, [`../sole_shared/${name}`, name.endsWith(".css") ? "text/css" : "text/javascript"]]),
 ]);
 const config = {
@@ -36,17 +36,6 @@ const server = createServer(async (request, response) => {
     };
     response.writeHead(200, { "Content-Type": "text/javascript; charset=utf-8", "Cache-Control": "no-store" });
     response.end(request.method === "HEAD" ? undefined : `window.SOLE_ACCOUNT_CONFIG = ${JSON.stringify(account)};`);
-    return;
-  }
-  if (pathname === "/sole-account-images") {
-    try {
-      const files = await readdir(new URL("../my_fastapi_service_sole_list/images/", import.meta.url), { withFileTypes: true });
-      const images = files.filter((file) => file.isFile() && /^[\w.-]+\.(jpg|jpeg|png|webp|avif)$/i.test(file.name));
-      response.writeHead(200, { "Content-Type": "application/json", "Cache-Control": "no-store" });
-      response.end(request.method === "HEAD" ? undefined : JSON.stringify(images.map((file) => `images/${file.name}`).sort()));
-    } catch {
-      response.writeHead(503).end("Image inventory unavailable");
-    }
     return;
   }
   asset = assets.get(pathname);

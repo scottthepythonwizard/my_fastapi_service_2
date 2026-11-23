@@ -1,7 +1,6 @@
 """Sole Fit sizing API and frontend backed by the shared Archive catalog."""
 import json
 import os
-import re
 from pathlib import Path
 from typing import Annotated, Literal
 
@@ -105,12 +104,6 @@ def create_app(catalog=None):
             })
             return Response(f"window.SOLE_ACCOUNT_CONFIG = {config};", media_type="text/javascript",
                             headers={"Cache-Control": "no-store"})
-        if filename == "sole-account-images":
-            archive_images = ROOT.parent / "my_fastapi_service_sole_list" / "images"
-            if not archive_images.is_dir():
-                raise HTTPException(503, "Image inventory unavailable.")
-            return [f"images/{path.name}" for path in sorted(archive_images.iterdir())
-                    if path.is_file() and re.fullmatch(r"[\w.-]+\.(jpg|jpeg|png|webp|avif)", path.name, re.I)]
         if filename not in {'app.js', 'components.js', 'community.js', 'style.css'}:
             raise HTTPException(404, 'File not found.')
         return FileResponse(ROOT / filename, headers={'Cache-Control': 'no-store'})

@@ -15,7 +15,7 @@ from fastapi.security import APIKeyHeader, HTTPAuthorizationCredentials, HTTPBea
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator, create_model
 
-from catalog import IMAGE_EXTENSIONS, ROOT, SneakerAttributes, legacy_sneaker
+from catalog import ROOT, SneakerAttributes, legacy_sneaker
 from catalog_repository import CatalogRepository, DatabaseUnavailable, DuplicateReference, HostedCatalogRepository
 
 # The default is a public classroom key. Set SOLE_API_KEY for other environments.
@@ -301,12 +301,6 @@ if ACCOUNT_ASSETS.is_dir():
                         headers={"Cache-Control": "no-store"})
 
     app.mount("/sole-shared", StaticFiles(directory=ACCOUNT_ASSETS), name="sole-shared")
-
-    @app.get("/sole-account-images", include_in_schema=False)
-    def account_images():
-        return [f"images/{path.name}" for path in sorted((ROOT / "images").iterdir())
-                if path.is_file() and path.suffix.lower() in IMAGE_EXTENSIONS
-                and re.fullmatch(r"[\w.-]+", path.name)]
 
 if LOCAL_SITES:
     # The local workspace contains all three apps. An Archive-only deployment can still run independently.

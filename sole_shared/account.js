@@ -6,7 +6,7 @@
   const sizeLabels = { us_men: "US men", us_women: "US women", us: "US", uk: "UK", eu: "EU" };
   const favorites = new Map();
   const pending = new Set();
-  let client, user, admin = false, ready = false, refreshId = 0, panel = "", panelVersion = 0;
+  let client, user, ready = false, refreshId = 0, panel = "", panelVersion = 0;
   const account = document.createElement("dialog");
   account.className = "sole-account";
   account.setAttribute("aria-labelledby", "sole-account-title");
@@ -34,20 +34,43 @@
     return size == null ? "" : [sizeLabels[system], new Intl.NumberFormat().format(size)].filter(Boolean).join(" ");
   }
 
+  function favoritePhoto(path) {
+    const photo = element("div");
+    photo.className = "sole-favorite-photo";
+    const placeholder = element("span", "No photo");
+    photo.append(placeholder);
+    if (typeof path !== "string" || !/^\/?images\/[\w.-]+\.(jpg|jpeg|png|webp|avif)$/i.test(path)) return photo;
+
+    const origin = window.SOLE_COMPARE_CONFIG?.apiOrigin || window.SOLE_FIT_CONFIG?.archiveOrigin || location.origin;
+    const image = element("img");
+    image.alt = "";
+    image.width = 64;
+    image.height = 56;
+    image.loading = "lazy";
+    image.addEventListener("load", () => { placeholder.hidden = true; }, { once: true });
+    image.addEventListener("error", () => image.remove(), { once: true });
+    image.src = new URL("/" + path.replace(/^\//, ""), origin).href;
+    photo.append(image);
+    return photo;
+  }
+
   function syncButtons() {
     for (const node of document.querySelectorAll("[data-sole-favorite]")) {
       const id = Number(node.dataset.soleFavorite);
       const saved = favorites.get(id);
-      const sized = node.dataset.size !== undefined;
-      node.disabled = pending.has(id) || (!ready && Boolean(client));
-      node.textContent = pending.has(id) ? "Saving…" : saved
-        ? sized ? "Update saved size" : "Remove favorite"
-        : sized ? "Save with size" : "Save favorite";
-      node.setAttribute("aria-label", `${node.textContent} for ${node.dataset.name}`);
+      const locked = pending.has(id) || (!ready && Boolean(client));
+      const action = saved ? "Remove from favorites" : "Add to favorites";
+      node.setAttribute("aria-disabled", String(locked));
+      node.setAttribute("aria-label", `${action}: ${node.dataset.name}`);
+      node.title = action;
       node.dataset.saved = String(Boolean(saved));
-      if (!sized) node.setAttribute("aria-pressed", String(Boolean(saved)));
+      node.firstElementChild.textContent = saved ? "★" : "☆";
+      const resize = node.parentElement.querySelector("[data-update-size]");
+      if (resize) {
+        resize.hidden = !saved;
+        resize.setAttribute("aria-disabled", String(locked));
+      }
     }
-    for (const link of document.querySelectorAll('[data-sole-panel="admin"]')) link.hidden = !admin;
     for (const link of document.querySelectorAll("[data-sole-signin]")) link.textContent = user ? "Account" : "Sign in";
   }
 
@@ -55,23 +78,18 @@
     const token = ++refreshId;
     if (user?.id !== sessionUser?.id) {
       favorites.clear();
-      admin = false;
       ready = false;
     }
     user = sessionUser;
     syncButtons();
     if (!user) { ready = true; syncButtons(); return; }
-    const [saved, membership] = await Promise.all([
-      client.from("favorites").select("sneaker_id,size,size_system").order("created_at", { ascending: false }),
-      client.from("sole_admins").select("user_id").eq("user_id", user.id).maybeSingle(),
-    ]);
+    const saved = await client.from("favorites").select("sneaker_id,size,size_system").order("created_at", { ascending: false });
     if (token !== refreshId) return;
     ready = true;
     if (!saved.error) {
       favorites.clear();
       for (const row of saved.data) favorites.set(row.sneaker_id, row);
     }
-    admin = !membership.error && Boolean(membership.data);
     syncButtons();
     if (saved.error) throw saved.error;
   }
@@ -107,9 +125,9 @@
     const message = element("span");
     message.className = "sole-favorite-message";
     message.setAttribute("role", "status");
-    const control = button("Save favorite", async () => {
+    async function changeFavorite(remove, trigger) {
+      if (trigger.getAttribute("aria-disabled") === "true") return;
       if (!user) { openPanel("signin", "Sign in to save this sneaker."); return; }
-      const remove = size === null && favorites.has(item.id);
       message.textContent = "";
       try {
         if (await mutate(item.id, size, system, remove)) {
@@ -118,11 +136,24 @@
       } catch {
         message.textContent = "Couldn’t change this favorite. Try again.";
       }
-    });
+    }
+    const control = button("", () => changeFavorite(favorites.has(item.id), control));
+    control.className = "sole-star";
     control.dataset.soleFavorite = item.id;
     control.dataset.name = name;
-    if (size !== null) control.dataset.size = size;
-    host.append(control, message);
+    control.setAttribute("aria-label", `Add to favorites: ${name}`);
+    const star = element("span", "☆");
+    star.setAttribute("aria-hidden", "true");
+    control.append(star);
+    host.append(control);
+    if (size !== null) {
+      const resize = button("Update size", () => changeFavorite(false, resize));
+      resize.dataset.updateSize = "";
+      resize.hidden = true;
+      resize.setAttribute("aria-label", `Update saved size for ${name} to ${sizeText(size, system)}`);
+      host.append(resize);
+    }
+    host.append(message);
     queueMicrotask(syncButtons);
     return host;
   }
@@ -157,7 +188,7 @@
         });
         if (error || !data.user) { status.textContent = "Couldn’t sign in. Check your email and password."; return; }
         await refresh(data.user);
-        if (panel === "favorites" || panel === "admin") await renderPanel();
+        if (panel === "favorites") await renderPanel();
         else if (account.open && panel === "signin") account.close();
       } catch {
         status.textContent = "Couldn’t load your account. Try again.";
@@ -182,6 +213,7 @@
       const row = element("li");
       const label = `${sneaker.brand} ${sneaker.name}`;
       const info = element("div");
+      info.className = "sole-favorite-info";
       const size = favorites.get(id);
       info.append(element("strong", label), element("p", [sneaker.category, sizeText(size?.size, size?.size_system)].filter(Boolean).join(" · ")));
       const remove = button("Remove", async () => {
@@ -199,7 +231,7 @@
         }
       });
       remove.setAttribute("aria-label", `Remove ${label} from favorites`);
-      row.append(info, remove);
+      row.append(favoritePhoto(sneaker.image_url), info, remove);
       list.append(row);
     }
     body.replaceChildren(list);
@@ -212,12 +244,7 @@
     if (!user) { renderSignIn(message || (panel === "favorites" ? "Sign in to view your favorites." : "")); return; }
     try {
       if (panel === "favorites") await renderFavorites(version);
-      else if (panel === "admin") {
-        title.textContent = "Manage sneakers";
-        if (!admin) { status.textContent = "Administrator access is required."; return; }
-        const { renderAdmin } = await import("./admin.js");
-        if (version === panelVersion) await renderAdmin(client, body, status);
-      } else {
+      else {
         title.textContent = "Account";
         body.append(element("p", user.email), button("Sign out", async (event) => {
           event.currentTarget.disabled = true;
@@ -243,19 +270,7 @@
     void renderPanel(message);
   }
 
-  function canClose() {
-    return !account.querySelector("[data-unsaved]") || window.confirm("Discard your unsaved sneaker changes?");
-  }
-
-  account.querySelector("[data-close]").addEventListener("click", () => {
-    if (canClose()) account.close();
-  });
-  account.addEventListener("cancel", (event) => {
-    if (!canClose()) event.preventDefault();
-  });
-  window.addEventListener("beforeunload", (event) => {
-    if (account.open && account.querySelector("[data-unsaved]")) event.preventDefault();
-  });
+  account.querySelector("[data-close]").addEventListener("click", () => account.close());
   account.addEventListener("close", () => {
     ++panelVersion;
     panel = "";
@@ -301,7 +316,7 @@
     window.addEventListener("pageshow", () => { if (user) refresh(user).catch(() => {}); });
     window.addEventListener("focus", () => { if (user) refresh(user).catch(() => {}); });
     const initial = new URLSearchParams(location.search).get("panel");
-    if (["favorites", "admin"].includes(initial) && !account.open) openPanel(initial);
+    if (initial === "favorites" && !account.open) openPanel(initial);
   }
   start().catch(() => { status.textContent = "Account services are unavailable. Reload the page to try again."; });
 })();

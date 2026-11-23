@@ -3,12 +3,31 @@
   align-items: center;
   flex-wrap: wrap;
   justify-content: flex-end;
-  gap: 6px 12px;
-  font-size: .78rem;
+  gap: .25rem .5rem;
+  font: 700 .6875rem/1.6 Arial, Helvetica, sans-serif;
+  letter-spacing: .08em;
 }
-.sole-account-nav a { text-decoration: underline; text-underline-offset: .2em; }
-.sole-account-nav [hidden] { display: none; }
-.sole-account button, .sole-account-nav button, .sole-favorite button {
+.sole-account-nav :is(a, button) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: .35rem .55rem;
+  border: 0;
+  border-radius: .3rem;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-underline-offset: .3em;
+  white-space: nowrap;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.sole-account-nav :is(a, button):is(:hover, :focus-visible) { text-decoration: underline; }
+.sole-account button, .sole-favorite button {
   min-height: 44px;
   padding: .45rem .75rem;
   font: inherit;
@@ -20,18 +39,27 @@
   cursor: pointer;
   touch-action: manipulation;
 }
-.sole-account button:disabled, .sole-favorite button:disabled { opacity: .65; cursor: wait; }
+.sole-account button:disabled, .sole-favorite button[aria-disabled="true"] { opacity: .65; cursor: wait; }
 .sole-account button:focus-visible, .sole-account-nav :focus-visible,
-.sole-favorite button:focus-visible, .sole-account :is(input,select,textarea):focus-visible {
+.sole-favorite button:focus-visible, .sole-account input:focus-visible {
   outline: 2px solid #255d18;
   outline-offset: 2px;
 }
 .sole-favorite-card { min-width: 0; display: flex; flex-direction: column; align-items: stretch; }
 .sole-favorite-card > :first-child { width: 100%; }
-.sole-favorite { margin: .55rem 0; font-size: .8rem; min-width: 0; }
-.sole-favorite button[data-saved="true"] { background: #e8efdc; border-color: #617350; }
-.sole-favorite-message { display: block; overflow-wrap: anywhere; }
-.sole-favorite-message:not(:empty) { margin-top: .3rem; }
+.sole-favorite { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem; margin: .55rem 0; font-size: .8rem; min-width: 0; }
+.sole-favorite .sole-star {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  padding: 0;
+  font: 400 1.625rem/1 "Segoe UI Symbol", Arial, sans-serif;
+}
+.sole-favorite button[data-saved="true"] { color: #28512c; background: #e8efdc; border-color: #617350; }
+.sole-favorite button:hover { background: #e8efdc; }
+.sole-favorite [hidden] { display: none; }
+.sole-favorite-message { flex-basis: 100%; overflow-wrap: anywhere; }
+.sole-favorite-message:empty { margin: 0; }
 dialog.sole-account {
   position: fixed;
   inset: 0;
@@ -49,15 +77,13 @@ dialog.sole-account {
 }
 dialog.sole-account::backdrop { background: #171a13a0; }
 .sole-account > header { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1rem; }
-.sole-account h2, .sole-account h3 { margin: 0; text-wrap: balance; }
-.sole-account h2 { font-size: clamp(1.35rem, 5vw, 2rem); }
-.sole-account h3 { font-size: 1.15rem; }
+.sole-account h2 { margin: 0; text-wrap: balance; font-size: clamp(1.35rem, 5vw, 2rem); }
 .sole-account .sole-status { margin: .75rem 0 0; font-size: .9rem; }
 .sole-account .sole-status:empty { display: none; }
-.sole-account-form, .sole-admin-fields { display: grid; gap: .85rem; }
+.sole-account-form { display: grid; gap: .85rem; }
 .sole-account-form > button { justify-self: start; }
 .sole-account label { display: grid; gap: .35rem; font-weight: 600; font-size: .875rem; min-width: 0; }
-.sole-account :is(input,select,textarea) {
+.sole-account input {
   box-sizing: border-box;
   width: 100%;
   min-height: 44px;
@@ -68,18 +94,32 @@ dialog.sole-account::backdrop { background: #171a13a0; }
   color: inherit;
   font: 1rem system-ui, sans-serif;
 }
-.sole-account textarea { min-height: 5rem; resize: vertical; }
 .sole-account button[type="submit"] { background: #1c2117; color: white; }
 .sole-favorites-list { list-style: none; padding: 0; margin: 0; }
-.sole-favorites-list li { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .65rem 0; border-bottom: 1px solid #d4d5ca; }
-.sole-favorites-list li > div { min-width: 0; overflow-wrap: anywhere; }
+.sole-favorites-list li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(.5rem, 2vw, 1rem);
+  padding: .65rem 0;
+  border-bottom: 1px solid #d4d5ca;
+}
+.sole-favorite-info, .sole-account [data-body] > p { overflow-wrap: anywhere; }
+.sole-favorite-photo {
+  display: grid;
+  place-items: center;
+  width: min(64px, 16vw);
+  aspect-ratio: 8 / 7;
+  overflow: hidden;
+  border-radius: .5rem;
+  background: #e9eadf;
+  color: #505648;
+  font-size: .65rem;
+  text-align: center;
+}
+.sole-favorite-photo > * { grid-area: 1 / 1; }
+.sole-favorite-photo img { width: 100%; height: 100%; object-fit: contain; }
 .sole-favorites-list p { margin: .2rem 0 0; font-variant-numeric: tabular-nums; }
-.sole-admin-toolbar, .sole-admin-actions { display: flex; align-items: end; gap: .65rem; flex-wrap: wrap; }
-.sole-admin-toolbar { margin-bottom: 1rem; }
-.sole-admin-toolbar label { flex: 1 1 12rem; }
-.sole-admin-fields { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.sole-wide { grid-column: 1 / -1; }
 @media (max-width: 480px) {
-  .sole-admin-fields { grid-template-columns: 1fr; }
   .site-header:has(.sole-account-nav) { height: auto; min-height: 76px; gap: .35rem .75rem; flex-wrap: wrap; padding-block: .35rem; }
 }

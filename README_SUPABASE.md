@@ -8,13 +8,13 @@ Sole Archive owns the sneaker API. Sole Fit requests the same catalog for sizing
 2. Use [Archive](http://127.0.0.1:8000/archive), [Fit](http://127.0.0.1:8000/fit/), or [Compare](http://127.0.0.1:8000/compare/). The launcher serves all three on port 8000, so browser requests for the catalog, fit recommendations, and product images use the same origin.
 3. Open [Archive API docs](http://127.0.0.1:8000/docs) to exercise the endpoints. For reads, authorize with the configured catalog read key. For writes, use the bearer token from your private `.env`. To try a create, use the `attributes` object from an existing `GET /api/v1/catalog/1` response, change the name and reference number, and submit it as the body. Use the returned ID for PATCH and DELETE.
 
-On a lab computer, leave `.env` absent. The launcher uses the public catalog on the hosted SOLE API for reads and your Supabase account for favorites and admin changes. First-time dependency installation and normal use require internet access.
+On a lab computer, leave `.env` absent. The launcher uses the public catalog on the hosted SOLE API for reads and your Supabase account for favorites. First-time dependency installation and normal use require internet access.
 
-Use **Sign in** on any site with an existing SOLE Supabase email/password account. The launcher serves all three sites under one browser origin, so their login and favorites list are shared. Fit can save a selected reference size or the displayed recommendation. A favorite saved without a size can be sized later. Use **Account → Sign out** when finished on a shared computer.
+Use **Sign in** on any site with an existing SOLE Supabase email/password account. The launcher serves all three sites under one browser origin, so their login and favorites list are shared. Use the star to save or remove a sneaker. Fit saves the selected reference size or displayed recommendation and offers **Update size** for a saved sneaker. Use **Account → Sign out** when finished on a shared computer.
 
-The **Admin** link appears for members of `public.sole_admins`. Use an existing catalog image when adding a sneaker, and refresh the catalog pages to see record changes. Deleting a sneaker removes the favorites that point to it. For a separate development database, apply the favorite sizes migration after the consolidated catalog and configure both `SOLE_SUPABASE_URL` and `SOLE_SUPABASE_PUBLISHABLE_KEY` plus the matching catalog connection.
+For a separate development database, apply the favorite sizes migration after the consolidated catalog and configure both `SOLE_SUPABASE_URL` and `SOLE_SUPABASE_PUBLISHABLE_KEY` plus the matching catalog connection.
 
-A private developer checkout can still use `.env` with the runtime pooler URL and legacy API write token. Keep those credentials on trusted machines or in hosting secrets. The browser admin screen uses the signed-in user's Supabase membership.
+A private developer checkout can still use `.env` with the runtime pooler URL and API write token. Keep those credentials on trusted machines or in hosting secrets.
 
 ## Request flow and data model
 

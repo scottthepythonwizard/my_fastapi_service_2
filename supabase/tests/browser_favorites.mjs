@@ -2,7 +2,10 @@
 // only the Auth/PostgREST requests used here; production never loads this file.
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
+import { mkdir, mkdtemp, writeFile } from "node:fs/promises";
 import { createServer } from "node:http";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { chromium } from "playwright-core";
 import { asUser, fixtureDatabase, userA, userB } from "./test_favorite_sizes.mjs";
@@ -15,6 +18,7 @@ const testKey = "public-test-key";
 const mockURL = "http://127.0.0.1:19630";
 const appURL = "http://127.0.0.1:19631";
 const pages = ["/archive", "/compare/", "/fit/"];
+const chrome = process.env.SOLE_CHROME || "C:/Program Files/Google/Chrome/Application/chrome.exe";
 
 function apiItem(record) {
   const { id, image_url, image_note, provenance, created_at, ...attributes } = record;
@@ -39,13 +43,12 @@ const root = fileURLToPath(new URL("../../", import.meta.url));
 const python = process.env.SOLE_TEST_PYTHON || fileURLToPath(new URL("../../my_fastapi_service_sole_list/.venv/Scripts/python.exe", import.meta.url));
 const processHandle = spawn(python, ["-m", "uvicorn", "app:app", "--host", "127.0.0.1", "--port", "19631"],
   { cwd: root, env, windowsHide: true, stdio: "ignore" });
-const nativeFields = Object.keys((await query("SELECT * FROM sole.sneakers LIMIT 1"))[0]).filter((name) => !["id", "created_at"].includes(name));
 const pageErrors = [];
 let failNextSave = false;
 let browser;
 
-async function setupContext() {
-  const context = await browser.newContext();
+async function setupContext(context = null) {
+  context ||= await browser.newContext();
   await context.route(mockURL + "/**", async (route) => {
     const request = route.request();
     const url = new URL(request.url());
@@ -81,8 +84,6 @@ async function setupContext() {
           case "/rest/v1/favorites":
             if (method === "DELETE") return select(tx, "DELETE FROM public.favorites WHERE sneaker_id=$1", [eq("sneaker_id")]);
             return select(tx, "SELECT sneaker_id,size::float AS size,size_system FROM public.favorites ORDER BY created_at DESC");
-          case "/rest/v1/sole_admins":
-            return select(tx, "SELECT user_id FROM public.sole_admins WHERE user_id=$1", [eq("user_id")]);
           case "/rest/v1/rpc/sole_favorites":
             return select(tx, "SELECT * FROM public.sole_favorites()");
           case "/rest/v1/rpc/sole_save_favorite": {
@@ -90,26 +91,9 @@ async function setupContext() {
             await tx.query("SELECT public.sole_save_favorite($1,$2,$3)", [p_sneaker_id, p_size, p_size_system]);
             return [];
           }
-          case "/rest/v1/sneakers": {
-            if (method === "GET") return select(tx, "SELECT * FROM sole.sneakers ORDER BY id");
-            if (method === "DELETE") return select(tx, "DELETE FROM sole.sneakers WHERE id=$1 RETURNING id", [eq("id")]);
-            const data = args();
-            const fields = nativeFields.filter((field) => Object.hasOwn(data, field));
-            const values = fields.map((field) => data[field]);
-            if (method === "POST") {
-              const placeholders = fields.map((_, index) => "$" + (index + 1));
-              return select(tx, `INSERT INTO sole.sneakers (${fields.join(",")}) VALUES (${placeholders.join(",")}) RETURNING id`, values);
-            }
-            const assignments = fields.map((field, index) => `${field}=$${index + 1}`);
-            return select(tx, `UPDATE sole.sneakers SET ${assignments.join(",")} WHERE id=$${values.length + 1} RETURNING id`, [...values, eq("id")]);
-          }
           default: throw new Error("Unexpected test route: " + url.pathname);
         }
       });
-      if (request.headers().accept?.includes("vnd.pgrst.object")) {
-        if (rows.length !== 1) return answer(406, { code: "PGRST116", message: "Expected one row" });
-        return answer(200, rows[0]);
-      }
       return answer(200, rows);
     } catch (error) {
       if (!error.code) console.error(error.message);
@@ -117,6 +101,7 @@ async function setupContext() {
     }
   });
   const page = await context.newPage();
+  page.setDefaultTimeout(10000);
   page.on("pageerror", (error) => pageErrors.push(error.message));
   return page;
 }
@@ -140,16 +125,53 @@ async function favoritesList(page) {
   return modal(page).locator(".sole-favorites-list");
 }
 
-async function verifyCatalog(name, present) {
-  const page = await setupContext();
-  for (const path of pages) {
-    await page.goto(appURL + path);
-    await favorite(page, 1).waitFor();
-    const title = page.locator("main h3").filter({ hasText: name });
-    if (present) await title.waitFor();
-    else assert.equal(await title.count(), 0, path);
+async function checkNavbar(page) {
+  const controls = nav(page).locator("a, button");
+  assert.equal(await controls.count(), 2);
+  const styles = await controls.evaluateAll((nodes) => nodes.map((node) => {
+    const s = getComputedStyle(node);
+    const rect = node.getBoundingClientRect();
+    return {
+      type: [s.fontFamily, s.fontSize, s.fontWeight, s.letterSpacing, s.padding, s.textTransform],
+      fits: rect.left >= 0 && rect.right <= window.innerWidth && rect.height >= 44,
+    };
+  }));
+  assert.deepEqual(styles[0], styles[1]);
+  assert.ok(styles[0].fits);
+  await controls.first().focus();
+  assert.equal(await controls.first().evaluate((node) => getComputedStyle(node).outlineStyle), "solid");
+  await page.keyboard.press("Tab");
+  assert.ok(await controls.last().evaluate((node) => document.activeElement === node));
+  await page.keyboard.press("Enter");
+  await modal(page).getByRole("heading", { name: "Account" }).waitFor();
+  await page.keyboard.press("Escape");
+  await modal(page).waitFor({ state: "hidden" });
+}
+
+async function checkCaretBrowsing(enabled) {
+  const profile = await mkdtemp(join(tmpdir(), "sole-caret-test-"));
+  await mkdir(join(profile, "Default"));
+  await writeFile(join(profile, "Default", "Preferences"), JSON.stringify({
+    settings: { a11y: { caretbrowsing: { enabled, show_dialog: false } } },
+  }));
+  const context = await chromium.launchPersistentContext(profile, { executablePath: chrome, headless: true });
+  try {
+    const page = await setupContext(context);
+    await page.goto(appURL + "/archive?panel=favorites");
+    await signIn(page, "b@example.test");
+    const text = modal(page).getByText("You haven’t saved any sneakers yet.");
+    await text.click({ position: { x: 6, y: 8 } });
+    const position = () => text.evaluate((node) => {
+      const selection = getSelection();
+      return selection.isCollapsed && selection.focusNode?.parentElement === node ? selection.focusOffset : null;
+    });
+    const before = await position();
+    await page.keyboard.press("ArrowRight");
+    const after = await position();
+    assert.equal(before !== null && after === before + 1, enabled, `Caret browsing: ${enabled}, ${before} → ${after}`);
+  } finally {
+    await context.close();
   }
-  await page.context().close();
 }
 
 try {
@@ -159,11 +181,13 @@ try {
     if (ready?.ok) break;
     await new Promise((resolve) => setTimeout(resolve, 200));
   }
-  browser = await chromium.launch({ executablePath: process.env.SOLE_CHROME || "C:/Program Files/Google/Chrome/Application/chrome.exe",
-    headless: true });
+  browser = await chromium.launch({ executablePath: chrome, headless: true });
   const a = await setupContext();
   await a.goto(appURL + "/fit/?reference=1&target=2");
-  await favorite(a, 1).click();
+  const unsavedStar = favorite(a, 1);
+  assert.equal(await unsavedStar.innerText(), "☆");
+  await unsavedStar.focus();
+  await a.keyboard.press("Enter");
   await checkText(modal(a).getByRole("status"), "Sign in to save");
   await signIn(a, "a@example.test");
   await modal(a).waitFor({ state: "hidden" });
@@ -177,16 +201,24 @@ try {
   for (const path of pages) {
     await a.goto(appURL + path);
     await a.reload();
+    await nav(a).getByRole("button", { name: "Account" }).waitFor();
+    await checkNavbar(a);
     const list = await favoritesList(a);
     await checkText(list.locator("li"), "EU 42.5");
+    const photo = list.locator("img").first();
+    await photo.waitFor();
+    await a.waitForFunction(() => document.querySelector(".sole-favorites-list img")?.naturalWidth > 0);
+    assert.match(await photo.getAttribute("src"), /\/images\/1\.jpg$/);
     await modal(a).getByRole("button", { name: "Close" }).click();
-    await a.locator('button[data-sole-favorite="1"][data-saved="true"]').first().waitFor();
+    const savedStar = a.locator('button[data-sole-favorite="1"][data-saved="true"]').first();
+    assert.equal(await savedStar.innerText(), "★");
+    assert.match(await savedStar.getAttribute("aria-label"), /^Remove from favorites:/);
   }
   console.log("PASS: Fit selected size appears across all three sites after reload; signed-out save opens sign-in.");
 
   await a.goto(appURL + "/fit/?reference=1&target=2");
   await a.locator("#referenceSize").selectOption("9.5");
-  await favorite(a, 1, "#referencePreview").click();
+  await a.locator("#referencePreview").getByRole("button", { name: /Update saved size/ }).click();
   await checkText(a.locator("#referencePreview [role=status]"), "Saved size US men 9.5");
   await a.locator("#recommendButton").click();
   const resultText = await a.locator(".recommended-size").innerText();
@@ -198,7 +230,7 @@ try {
   assert.equal(rec.size, Number(resultText.split(" ").at(-1)));
   await a.goto(appURL + "/archive");
   await favorite(a, 4).click();
-  await checkText(favorite(a, 4), "Remove favorite");
+  await a.getByRole("button", { name: /^Remove from favorites:/ }).and(favorite(a, 4)).waitFor();
   const unsized = await query("SELECT size FROM public.favorites WHERE user_id=$1 AND sneaker_id=4", [userA]);
   assert.deepEqual(unsized, [{ size: null }]);
   await a.goto(appURL + "/compare/");
@@ -206,9 +238,19 @@ try {
   await a.locator("#pairTwo").selectOption("2");
   await a.locator("#compareButton").click();
   assert.equal(await a.locator(".comparison-table .shoe-heading button[data-sole-favorite]").count(), 2);
+  const comparisonStar = (id) => favorite(a, id, ".comparison-table");
+  await comparisonStar(2).click();
+  await a.locator('.comparison-table button[data-sole-favorite="2"][data-saved="false"]').waitFor();
+  assert.equal(await comparisonStar(1).innerText(), "★");
+  assert.equal(await comparisonStar(2).innerText(), "☆");
+  await comparisonStar(2).click();
+  await a.locator('.comparison-table button[data-sole-favorite="2"][data-saved="true"]').waitFor();
+  const archiveShoe = (await query("UPDATE sole.sneakers SET image_url='images/favorites-missing-fixture.jpg' WHERE id=4 RETURNING brand,name"))[0];
   const list = await favoritesList(a);
   await checkText(list.locator("li").filter({ hasText: "US men 9.5" }), "US men 9.5");
-  const archiveShoe = (await query("SELECT brand,name FROM sole.sneakers WHERE id=4"))[0];
+  const missingPhoto = list.locator("li").filter({ hasText: archiveShoe.name }).locator(".sole-favorite-photo");
+  await missingPhoto.getByText("No photo", { exact: true }).waitFor();
+  await missingPhoto.locator("img").waitFor({ state: "detached" });
   await list.getByRole("button", { name: `Remove ${archiveShoe.brand} ${archiveShoe.name} from favorites` }).click();
   await checkText(modal(a).getByRole("status"), "Removed");
   assert.equal((await query("SELECT 1 FROM public.favorites WHERE user_id=$1 AND sneaker_id=4", [userA])).length, 0);
@@ -221,52 +263,41 @@ try {
   await modal(b).getByText("You haven’t saved any sneakers yet.").waitFor();
   assert.ok(await modal(b).evaluate((node) => node.scrollWidth <= node.clientWidth));
   assert.equal(await nav(b).getByRole("link", { name: "Admin" }).count(), 0);
-  const forbidden = await b.evaluate(async ({ mockURL, userB }) => {
-    const response = await fetch(mockURL + "/rest/v1/sneakers", {
-      method: "POST", headers: { Authorization: "Bearer fixture-" + userB,
-        "Content-Profile": "sole", "Content-Type": "application/json" },
-      body: JSON.stringify({ name: "Forbidden test row" }),
-    });
-    return response.status;
-  }, { mockURL, userB });
-  assert.equal(forbidden, 403);
-  console.log("PASS: Separate account sees an empty Favorites list, has no admin controls, and PostgreSQL denies its catalog write.");
+  const message = modal(b).getByText("You haven’t saved any sneakers yet.");
+  assert.deepEqual(await message.evaluate((node) => [node.isContentEditable, document.designMode]), [false, "off"]);
+  assert.equal(await b.locator('[contenteditable="true"]').count(), 0);
+  await message.dblclick({ position: { x: 6, y: 8 } });
+  assert.ok(await b.evaluate(() => getSelection().toString()), "Ordinary text can still be selected");
+  await modal(b).getByRole("button", { name: "Close" }).click();
+  for (const path of pages) {
+    await b.goto(appURL + path);
+    await nav(b).getByRole("button", { name: "Account" }).waitFor();
+    await checkNavbar(b);
+  }
+  console.log("PASS: Mobile navigation and keyboard focus on Archive, Compare and Fit; Favorites text is selectable and noneditable.");
 
   const ap = await setupContext();
   await ap.goto(appURL + "/archive");
   await nav(ap).getByRole("button", { name: "Sign in" }).click();
   await signIn(ap, "admin@example.test");
-  await modal(ap).waitFor({ state: "hidden" });
-  await nav(ap).getByRole("link", { name: "Admin" }).click();
-  await modal(ap).getByRole("button", { name: "New sneaker" }).click();
-  const form = modal(ap).locator("form");
-  const record = (await query("SELECT * FROM sole.sneakers WHERE id=1"))[0];
-  const testName = "SOLE Browser Test Sneaker";
-  const draft = { ...record, shoe_reference_number: "SOLE-BROWSER-FIXTURE", name: testName, provenance: {} };
-  for (const name of nativeFields) {
-    const field = form.locator(`[name="${name}"]`);
-    if (await field.evaluate((node) => node.tagName === "SELECT")) await field.selectOption(draft[name]);
-    else await field.fill(draft[name] === null ? "" : name === "provenance" ? "{}" : String(draft[name]));
+  for (const path of pages) {
+    await ap.goto(appURL + path + "?panel=admin");
+    await nav(ap).getByRole("button", { name: "Account" }).waitFor();
+    assert.equal(await nav(ap).getByRole("link", { name: "Admin" }).count(), 0);
+    assert.equal(await modal(ap).count(), 0);
+    const retired = await ap.request.get(appURL + path.replace(/\/$/, "") + "/admin");
+    assert.equal(retired.status(), 404);
   }
-  await form.getByRole("button", { name: "Add sneaker", exact: true }).click();
-  await checkText(modal(ap).getByRole("status"), "Sneaker saved.");
-  const id = (await query("SELECT id FROM sole.sneakers WHERE shoe_reference_number='SOLE-BROWSER-FIXTURE'"))[0].id;
-  await verifyCatalog(testName, true);
-  await form.getByLabel("Sneaker name").fill(testName + " Revised");
-  await form.getByRole("button", { name: "Save changes" }).click();
-  await checkText(modal(ap).getByRole("status"), "Sneaker saved.");
-  await verifyCatalog(testName + " Revised", true);
-  await asUser(db, userA, (tx) => tx.query("SELECT public.sole_save_favorite($1,9,'us_men')", [id]));
-  ap.once("dialog", (dialog) => dialog.dismiss());
-  await form.getByRole("button", { name: "Delete sneaker" }).click();
-  assert.equal((await query("SELECT id FROM sole.sneakers WHERE id=$1", [id])).length, 1);
-  ap.once("dialog", (dialog) => dialog.accept());
-  await form.getByRole("button", { name: "Delete sneaker" }).click();
-  await checkText(modal(ap).getByRole("status"), "Sneaker deleted.");
-  await verifyCatalog(testName, false);
-  assert.equal((await query("SELECT 1 FROM public.favorites WHERE sneaker_id=$1", [id])).length, 0);
+  for (const path of ["/admin", "/sole-shared/admin.js", "/sole-account-images", "/fit/sole-account-images"]) {
+    assert.equal((await ap.request.get(appURL + path)).status(), 404);
+  }
   assert.deepEqual(pageErrors, []);
-  console.log("PASS: Admin add, view, edit, cancel delete, confirm delete, cascade and refreshed catalogs on all three sites.");
+  console.log("PASS: Admin account can sign in, and retired URLs and assets cannot open the editor.");
+  if (process.env.SOLE_TEST_CARET === "1") {
+    await checkCaretBrowsing(false);
+    await checkCaretBrowsing(true);
+    console.log("PASS: Clicking the empty Favorites message produces a movable text caret only when Chrome caret browsing is enabled.");
+  }
 } finally {
   await browser?.close();
   processHandle.kill();
