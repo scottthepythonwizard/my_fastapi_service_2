@@ -4,11 +4,17 @@ Sole Archive owns the sneaker API. Sole Fit requests the same catalog for sizing
 
 ## Run the local demo
 
-1. Open `START_SOLE.cmd`. It checks the shared catalog, opens all three sites, and leaves the local services running in the background. Run it again after restarting Windows. The workspace already has a private `.env` and the Python environment on this machine.
+1. Download or clone the complete repository and extract it if needed. On Windows with Python 3.12 installed, open `START_SOLE.cmd` from the root. On the first run it creates a Python environment and installs the required packages. It then checks the shared catalog and opens all three sites. Run it again after restarting Windows.
 2. Use [Archive](http://127.0.0.1:8000/archive), [Fit](http://127.0.0.1:8000/fit/), or [Compare](http://127.0.0.1:8000/compare/). The launcher serves all three on port 8000, so browser requests for the catalog, fit recommendations, and product images use the same origin.
 3. Open [Archive API docs](http://127.0.0.1:8000/docs) to exercise the endpoints. For reads, authorize with the configured catalog read key. For writes, use the bearer token from your private `.env`. To try a create, use the `attributes` object from an existing `GET /api/v1/catalog/1` response, change the name and reference number, and submit it as the body. Use the returned ID for PATCH and DELETE.
 
-For another Windows checkout, create the Archive environment with `python -m venv my_fastapi_service_sole_list/.venv`. Install dependencies with `my_fastapi_service_sole_list/.venv/Scripts/python.exe -m pip install -r my_fastapi_service_sole_list/requirements.txt -r sole_fit/requirements.txt`. Install Node.js 20 or later. Copy `.env.example` to `.env` and set the runtime role's Supabase transaction pooler URL and a randomly generated admin token. Keep both values private. Use the project dashboard's Connect panel for the pooler host and the username format `sole_catalog_api.<project-ref>`. If provisioning a different project, apply the migration once and set a password for the dedicated login role through a secure administrator session before starting the API.
+On a lab computer, leave `.env` absent. The launcher uses the public catalog on the hosted SOLE API for reads and your Supabase account for favorites and admin changes. First-time dependency installation and normal use require internet access.
+
+Use **Sign in** on any site with an existing SOLE Supabase email/password account. The launcher serves all three sites under one browser origin, so their login and favorites list are shared. Fit can save a selected reference size or the displayed recommendation. A favorite saved without a size can be sized later. Use **Account → Sign out** when finished on a shared computer.
+
+The **Admin** link appears for members of `public.sole_admins`. Use an existing catalog image when adding a sneaker, and refresh the catalog pages to see record changes. Deleting a sneaker removes the favorites that point to it. For a separate development database, apply the favorite sizes migration after the consolidated catalog and configure both `SOLE_SUPABASE_URL` and `SOLE_SUPABASE_PUBLISHABLE_KEY` plus the matching catalog connection.
+
+A private developer checkout can still use `.env` with the runtime pooler URL and legacy API write token. Keep those credentials on trusted machines or in hosting secrets. The browser admin screen uses the signed-in user's Supabase membership.
 
 ## Request flow and data model
 
@@ -32,16 +38,23 @@ sole.sneakers
   provenance             JSONB object, research notes and source links
 ```
 
-Each row holds a complete sneaker. The catalog has no dependent database tables. PostgreSQL stores undocumented years as null and Archive returns the existing `Not documented` label. Weight and release month may be absent. The seed lives in `supabase/migrations/20261105145922_sole_catalog.sql`. Catalog files are retained for seed provenance and tests. Images are served by Archive.
+Each row holds a complete sneaker. `public.favorites` references sneaker IDs and adds an optional numeric size and sizing system to the existing user/sneaker pair. PostgreSQL stores undocumented years as null and Archive returns the existing `Not documented` label. Weight and release month may be absent. Catalog files are retained for seed provenance and tests. Images are served by Archive.
 
 ## Access and failure behavior
 
-- PostgreSQL is in a private schema with row-level security. The runtime role can read and write the sneaker table and use the ID sequence. Supabase's `anon` and `authenticated` roles lack table access.
+- The Data API exposes the `sole` schema. Its row-level policies allow signed-in catalog reads and restrict browser CRUD to administrators. The dedicated backend role can access the sneaker table and its ID sequence. Supabase's `anon` role cannot access the sneaker or favorites tables directly. Favorites policies confine reads and writes to each owner, and clients can only update the size columns on saved rows.
 - FastAPI uses a separate bearer token for writes. The compatibility read key is browser-visible and grants access to the catalog reads. Both the role password and admin token live in the ignored `.env` or in hosting secrets.
 - The driver verifies the pooler certificate and hostname using the public Supabase CA. The service uses parameterized statements and timeouts. A partial update sends only supplied fields to PostgreSQL.
 - The API returns 401 for missing or invalid credentials, 404 for absent records, 409 for a duplicate reference, 422 for invalid input, and a generic 503 when it cannot reach the database. Health endpoints check the live catalog.
 
 ## Verified results
+
+To repeat the favorites size tests in a disposable local database, run
+`npm ci --prefix supabase/tests`, then `npm test --prefix supabase/tests`.
+With Chrome installed and the launcher’s Python environment available, run
+`npm run test:browser --prefix supabase/tests`. The Chrome suite opens all
+three actual pages, uses local PostgreSQL policies, and supplies synthetic
+Auth sessions through a test gateway. It does not require private credentials.
 
 - A TLS-verified connection as the runtime role returned 20 rows. All 20 IDs, attributes, images, and provenance matched the original Archive catalog. Supabase reported no security or performance advisory findings.
 - A temporary row was created through the API and confirmed in SQL. A partial update preserved omitted fields and the revised row appeared in all three sites in Chrome. Fit calculated a size and Compare rendered a two-shoe comparison.

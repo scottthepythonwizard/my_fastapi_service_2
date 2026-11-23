@@ -176,6 +176,8 @@ function sneakerCard(item) {
   image.src = localImagePath(item);
   image.alt = `${shoe.brand} ${shoe.name}${item.image_note ? " (alternate colorway pictured)" : ` — ${shoe.colorway}`}`;
   image.loading = "lazy";
+  image.width = 280;
+  image.height = 200;
   image.decoding = "async";
   image.addEventListener("error", handleImageError, { once: true });
   visual.append(element("span", "card-year", Number.isInteger(shoe.year) ? shoe.year : "ARCHIVE"), image,
@@ -186,7 +188,7 @@ function sneakerCard(item) {
   copy.append(element("p", "card-brand", shoe.brand), element("h3", "", shoe.name), bottom);
   card.append(visual, copy);
   card.addEventListener("click", () => viewSneaker(item.id, card));
-  return card;
+  return window.SoleAccount?.withFavorite(card, item) ?? card;
 }
 
 function displaySneakers() {
@@ -293,6 +295,7 @@ async function viewSneaker(id, opener = document.activeElement) {
     return row;
   });
   $("detailSpecs").replaceChildren(...rows);
+  $("detailFavorite").replaceChildren(...(window.SoleAccount ? [window.SoleAccount.favoriteButton(item)] : []));
   // A fresh host prevents a previous shoe's pending fit request from replacing this view.
   const communityHost = element("div");
   $("fitFeedback").replaceChildren(communityHost);

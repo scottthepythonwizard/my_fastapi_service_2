@@ -15,8 +15,8 @@ from fastapi.security import APIKeyHeader, HTTPAuthorizationCredentials, HTTPBea
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator, create_model
 
-from catalog import ROOT, SneakerAttributes, legacy_sneaker
-from catalog_repository import CatalogRepository, DatabaseUnavailable, DuplicateReference
+from catalog import IMAGE_EXTENSIONS, ROOT, SneakerAttributes, legacy_sneaker
+from catalog_repository import CatalogRepository, DatabaseUnavailable, DuplicateReference, HostedCatalogRepository
 
 # The default is a public classroom key. Set SOLE_API_KEY for other environments.
 API_KEY = os.environ.get("SOLE_API_KEY", "student-api-key-123")
@@ -107,7 +107,8 @@ SneakerId = Annotated[int, PathParameter(gt=0, le=2147483647)]
 
 
 app = FastAPI(title="Simple Sneaker API", version=API_VERSION)
-app.state.database = CatalogRepository()
+app.state.database = (CatalogRepository() if os.environ.get("SOLE_DATABASE_URL") or os.environ.get("VERCEL")
+                      else HostedCatalogRepository())
 app.add_middleware(
     CORSMiddleware, allow_origins=CORS_ORIGINS, allow_credentials=False,
     allow_methods=["GET", "POST", "PATCH", "DELETE", "OPTIONS"], allow_headers=["x-api-key", "Content-Type", "Authorization"],
@@ -287,6 +288,25 @@ async def invalid_request(request, error):
 
 
 app.mount("/images", StaticFiles(directory=ROOT / "images"), name="images")
+
+ACCOUNT_ASSETS = WORKSPACE / "sole_shared"
+if ACCOUNT_ASSETS.is_dir():
+    @app.get("/sole-account-config.js", include_in_schema=False)
+    def account_config():
+        config = json.dumps({
+            "url": os.environ.get("SOLE_SUPABASE_URL", "https://xwqdcqpxjjctwugbssqr.supabase.co"),
+            "key": os.environ.get("SOLE_SUPABASE_PUBLISHABLE_KEY", "sb_publishable_dn4hmTlJBFuQviEoTJ45BA_SWZQkIV5"),
+        })
+        return Response(f"window.SOLE_ACCOUNT_CONFIG = {config};", media_type="text/javascript",
+                        headers={"Cache-Control": "no-store"})
+
+    app.mount("/sole-shared", StaticFiles(directory=ACCOUNT_ASSETS), name="sole-shared")
+
+    @app.get("/sole-account-images", include_in_schema=False)
+    def account_images():
+        return [f"images/{path.name}" for path in sorted((ROOT / "images").iterdir())
+                if path.is_file() and path.suffix.lower() in IMAGE_EXTENSIONS
+                and re.fullmatch(r"[\w.-]+", path.name)]
 
 if LOCAL_SITES:
     # The local workspace contains all three apps. An Archive-only deployment can still run independently.

@@ -29,6 +29,12 @@ function updatePreviews() {
   for (const [select, host] of [["referenceShoe", "referencePreview"], ["targetShoe", "targetPreview"]]) {
     const item = state.items.find((candidate) => candidate.id === Number($(select).value));
     $(host).replaceChildren(...(item ? [ShoePreview(item)] : []));
+    if (item && window.SoleAccount) {
+      const referenceSize = select === "referenceShoe" && $("referenceSize").value
+        ? Number($("referenceSize").value) : null;
+      $(host).append(window.SoleAccount.favoriteButton(item, referenceSize,
+        referenceSize === null ? null : $("sizeSystem").value));
+    }
   }
   invalidate();
 }
@@ -45,7 +51,12 @@ async function calculate(event) {
     const result = await fitRequest(`/api/fit/recommend?${params}`);
     if (serial !== recommendationRequest) return;
     state.recommendation = result;
-    $("result").replaceChildren(Recommendation(result));
+    const recommendation = Recommendation(result);
+    const target = state.items.find((item) => item.id === result.target_shoe_id);
+    if (target && window.SoleAccount) {
+      recommendation.append(window.SoleAccount.favoriteButton(target, result.recommended_size, result.size_system));
+    }
+    $("result").replaceChildren(recommendation);
     $("result").hidden = false;
     $("fitMatrix").replaceChildren(FitMatrix(result.reference_profile, result.target_profile));
     $("matrixSection").hidden = false;
@@ -66,6 +77,7 @@ function openDetail(item) {
   opener = document.activeElement;
   $("detailTitle").textContent = item.attributes.name;
   $("detailPreview").replaceChildren(ShoePreview(item));
+  if (window.SoleAccount) $("detailPreview").append(window.SoleAccount.favoriteButton(item));
   const tags = node("dl", "detail-tags");
   for (const [key, label] of [["cut", "Cut"], ["closure_type", "Closure"], ["materials", "Materials"], ["cushioning", "Cushioning"]]) {
     tags.append(node("dt", "micro", label), node("dd", "", item.attributes[key]));
@@ -120,8 +132,8 @@ async function load() {
 
 $("calculator").addEventListener("submit", calculate);
 for (const id of ["referenceShoe", "targetShoe"]) $(id).addEventListener("change", updatePreviews);
-$("sizeSystem").addEventListener("change", () => { updateSizes(); invalidate(); });
-$("referenceSize").addEventListener("change", invalidate);
+$("sizeSystem").addEventListener("change", () => { updateSizes(); updatePreviews(); });
+$("referenceSize").addEventListener("change", updatePreviews);
 $("footWidth").addEventListener("input", () => {
   $("widthLabel").textContent = WIDTHS[Number($("footWidth").value)];
   $("footWidth").setAttribute("aria-valuetext", $("widthLabel").textContent);

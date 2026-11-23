@@ -1,0 +1,85 @@
+.sole-account-nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px 12px;
+  font-size: .78rem;
+}
+.sole-account-nav a { text-decoration: underline; text-underline-offset: .2em; }
+.sole-account-nav [hidden] { display: none; }
+.sole-account button, .sole-account-nav button, .sole-favorite button {
+  min-height: 44px;
+  padding: .45rem .75rem;
+  font: inherit;
+  font-weight: 600;
+  color: #1c2117;
+  background: #f8f7f1;
+  border: 1px solid #797d72;
+  border-radius: .65rem;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.sole-account button:disabled, .sole-favorite button:disabled { opacity: .65; cursor: wait; }
+.sole-account button:focus-visible, .sole-account-nav :focus-visible,
+.sole-favorite button:focus-visible, .sole-account :is(input,select,textarea):focus-visible {
+  outline: 2px solid #255d18;
+  outline-offset: 2px;
+}
+.sole-favorite-card { min-width: 0; display: flex; flex-direction: column; align-items: stretch; }
+.sole-favorite-card > :first-child { width: 100%; }
+.sole-favorite { margin: .55rem 0; font-size: .8rem; min-width: 0; }
+.sole-favorite button[data-saved="true"] { background: #e8efdc; border-color: #617350; }
+.sole-favorite-message { display: block; overflow-wrap: anywhere; }
+.sole-favorite-message:not(:empty) { margin-top: .3rem; }
+dialog.sole-account {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: min(44rem, calc(100% - 24px));
+  max-height: calc(100dvh - 24px);
+  padding: clamp(1rem, 4vw, 2rem);
+  border: 1px solid #86897c;
+  border-radius: 1rem;
+  background: #f8f7f1;
+  color: #1c2117;
+  text-align: left;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+dialog.sole-account::backdrop { background: #171a13a0; }
+.sole-account > header { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+.sole-account h2, .sole-account h3 { margin: 0; text-wrap: balance; }
+.sole-account h2 { font-size: clamp(1.35rem, 5vw, 2rem); }
+.sole-account h3 { font-size: 1.15rem; }
+.sole-account .sole-status { margin: .75rem 0 0; font-size: .9rem; }
+.sole-account .sole-status:empty { display: none; }
+.sole-account-form, .sole-admin-fields { display: grid; gap: .85rem; }
+.sole-account-form > button { justify-self: start; }
+.sole-account label { display: grid; gap: .35rem; font-weight: 600; font-size: .875rem; min-width: 0; }
+.sole-account :is(input,select,textarea) {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid #797d72;
+  border-radius: .5rem;
+  background: #fff;
+  padding: .45rem .6rem;
+  color: inherit;
+  font: 1rem system-ui, sans-serif;
+}
+.sole-account textarea { min-height: 5rem; resize: vertical; }
+.sole-account button[type="submit"] { background: #1c2117; color: white; }
+.sole-favorites-list { list-style: none; padding: 0; margin: 0; }
+.sole-favorites-list li { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .65rem 0; border-bottom: 1px solid #d4d5ca; }
+.sole-favorites-list li > div { min-width: 0; overflow-wrap: anywhere; }
+.sole-favorites-list p { margin: .2rem 0 0; font-variant-numeric: tabular-nums; }
+.sole-admin-toolbar, .sole-admin-actions { display: flex; align-items: end; gap: .65rem; flex-wrap: wrap; }
+.sole-admin-toolbar { margin-bottom: 1rem; }
+.sole-admin-toolbar label { flex: 1 1 12rem; }
+.sole-admin-fields { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.sole-wide { grid-column: 1 / -1; }
+@media (max-width: 480px) {
+  .sole-admin-fields { grid-template-columns: 1fr; }
+  .site-header:has(.sole-account-nav) { height: auto; min-height: 76px; gap: .35rem .75rem; flex-wrap: wrap; padding-block: .35rem; }
+}

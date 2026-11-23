@@ -1,6 +1,9 @@
 """Database access for the shared Sole sneaker catalog."""
 import os
+import json
 from pathlib import Path
+from urllib.error import HTTPError, URLError
+from urllib.request import Request, urlopen
 
 import psycopg
 from psycopg import sql
@@ -82,3 +85,30 @@ def _parameters(values):
         Jsonb(value) if key == 'provenance' else None if key == 'year' and value == UNKNOWN else value
         for key, value in values.items()
     )
+
+
+class HostedCatalogRepository(CatalogRepository):
+    """Use the public catalog when a lab checkout has no private database settings."""
+
+    def _read(self, suffix=""):
+        origin = os.environ.get("SOLE_HOSTED_CATALOG_ORIGIN", "https://my-fastapi-service-2.vercel.app").rstrip("/")
+        request = Request(f"{origin}/api/v1/catalog{suffix}",
+                          headers={"x-api-key": os.environ.get("SOLE_HOSTED_CATALOG_KEY", "student-api-key-123")})
+        try:
+            with urlopen(request, timeout=8) as response:
+                return json.load(response)
+        except HTTPError as error:
+            if suffix and error.code == 404:
+                return None
+            raise DatabaseUnavailable from None
+        except (URLError, OSError, ValueError):
+            raise DatabaseUnavailable from None
+
+    def list(self):
+        return self._read()["items"]
+
+    def get(self, sneaker_id):
+        return self._read(f"/{sneaker_id}")
+
+    def count(self):
+        return self._read()["count"]

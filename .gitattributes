@@ -1,0 +1,2 @@
+# Preserve the upstream browser bundle bytes for HTML subresource integrity.
+sole_shared/supabase-*.js binary

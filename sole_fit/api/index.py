@@ -1,6 +1,7 @@
 """Sole Fit sizing API and frontend backed by the shared Archive catalog."""
 import json
 import os
+import re
 from pathlib import Path
 from typing import Annotated, Literal
 
@@ -97,11 +98,27 @@ def create_app(catalog=None):
 
     @app.get('/{filename}', include_in_schema=False)
     def frontend_asset(filename: str):
+        if filename == "sole-account-config.js":
+            config = json.dumps({
+                "url": os.environ.get("SOLE_SUPABASE_URL", "https://xwqdcqpxjjctwugbssqr.supabase.co"),
+                "key": os.environ.get("SOLE_SUPABASE_PUBLISHABLE_KEY", "sb_publishable_dn4hmTlJBFuQviEoTJ45BA_SWZQkIV5"),
+            })
+            return Response(f"window.SOLE_ACCOUNT_CONFIG = {config};", media_type="text/javascript",
+                            headers={"Cache-Control": "no-store"})
+        if filename == "sole-account-images":
+            archive_images = ROOT.parent / "my_fastapi_service_sole_list" / "images"
+            if not archive_images.is_dir():
+                raise HTTPException(503, "Image inventory unavailable.")
+            return [f"images/{path.name}" for path in sorted(archive_images.iterdir())
+                    if path.is_file() and re.fullmatch(r"[\w.-]+\.(jpg|jpeg|png|webp|avif)", path.name, re.I)]
         if filename not in {'app.js', 'components.js', 'community.js', 'style.css'}:
             raise HTTPException(404, 'File not found.')
         return FileResponse(ROOT / filename, headers={'Cache-Control': 'no-store'})
 
     app.mount('/images', StaticFiles(directory=ROOT / 'images'), name='catalog-images')
+    account_assets = ROOT.parent / "sole_shared"
+    if account_assets.is_dir():
+        app.mount("/sole-shared", StaticFiles(directory=account_assets), name="sole-shared")
     return app
 
 

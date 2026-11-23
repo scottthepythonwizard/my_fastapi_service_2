@@ -12,6 +12,8 @@ export function sneakerImage(item, origin, className = "") {
   image.src = imageUrl(item, origin);
   image.alt = `${item.attributes.brand} ${item.attributes.name}${item.image_note ? " (alternate colorway pictured)" : ""}`;
   image.loading = "lazy";
+  image.width = 280;
+  image.height = 200;
   image.addEventListener("error", () => {
     image.hidden = true;
     image.parentElement.append(element("span", "image-unavailable", "Image unavailable"));
@@ -36,7 +38,7 @@ export function InventoryCard(item, { origin, selected, full, onToggle }) {
   copy.append(element("p", "card-brand", shoe.brand), element("h3", "", shoe.name), bottom);
   card.append(visual, copy);
   card.addEventListener("click", () => onToggle(item.id));
-  return card;
+  return window.SoleAccount?.withFavorite(card, item) ?? card;
 }
 
 export function SelectionSlot(item, { slot, origin, onRemove }) {
@@ -53,6 +55,7 @@ export function SelectionSlot(item, { slot, origin, onRemove }) {
     remove.setAttribute("aria-label", `Remove pair ${slot + 1}`);
     remove.addEventListener("click", onRemove);
     content.append(remove);
+    if (window.SoleAccount) content.append(window.SoleAccount.favoriteButton(item));
   }
   return content;
 }
@@ -86,6 +89,7 @@ export function ComparisonTable(left, right, { origin, differencesOnly }) {
     visual.append(element("span", "micro", `PAIR / 0${index + 1}`), sneakerImage(item, origin));
     heading.append(visual, element("span", "card-brand", item.attributes.brand), element("h3", "", item.attributes.name));
     if (item.image_note) heading.append(element("p", "data-note", item.image_note));
+    if (window.SoleAccount) heading.append(window.SoleAccount.favoriteButton(item));
     row.append(heading);
   }
   head.append(row);

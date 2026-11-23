@@ -1,0 +1,13 @@
+{
+  "name": "sole-favorites-verification",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node test_favorite_sizes.mjs --run",
+    "test:browser": "node browser_favorites.mjs"
+  },
+  "dependencies": {
+    "@electric-sql/pglite": "0.5.17",
+    "playwright-core": "1.62.1"
+  }
+}

@@ -8,6 +8,9 @@
   <title>SOLE.archive</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23d9ff50'/%3E%3Ctext x='16' y='47' font-size='44' font-family='Arial' font-weight='900'%3ES%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/sole-shared/account.css">
+  <script src="/sole-account-config.js" defer></script>
+  <script src="/sole-shared/account.js" defer></script>
   <script src="config.js" defer></script>
   <script src="app.js?v=1.2" defer></script>
 </head>
@@ -16,6 +19,11 @@
   <header class="site-header page-width">
     <a class="wordmark" href="#" aria-label="SOLE.archive home">SOLE<span>.</span><small>ARCHIVE</small></a>
     <span class="header-note micro">Archive</span>
+    <nav class="sole-account-nav" aria-label="SOLE account">
+      <a href="?panel=favorites" data-sole-panel="favorites">Favorites</a>
+      <a href="?panel=admin" data-sole-panel="admin" hidden>Admin</a>
+      <button type="button" data-sole-signin>Sign in</button>
+    </nav>
   </header>
   <main class="page-width">
     <section class="hero" aria-label="Welcome to the archive">
@@ -55,7 +63,7 @@
     <div class="detail-shell">
       <button type="button" class="close-dialog" id="closeDialog" aria-label="Close sneaker details" autofocus>✕</button>
       <div class="detail-visual"><span class="detail-index micro" id="detailIndex"></span><img id="detailImage" alt=""><p class="micro">SOLE / A CLOSER LOOK</p></div>
-      <div class="detail-content"><p class="micro detail-brand" id="detailBrand"></p><h2 id="detailName"></h2><div class="detail-price-row"><div><span class="micro retail-label">Retail Price</span><strong id="detailPrice"></strong></div><span id="detailRating"></span></div><p class="detail-overview" id="detailOverview"></p><p class="catalog-note" id="detailImageNote" hidden></p><p class="micro specs-heading">THE STORY & THE SPECIFICATIONS</p><dl class="spec-sheet" id="detailSpecs"></dl><p><a class="pill" id="soleFitLink" href="http://127.0.0.1:8002">Find my size in SoleFit ↗</a></p><div id="fitFeedback"></div></div>
+      <div class="detail-content"><p class="micro detail-brand" id="detailBrand"></p><h2 id="detailName"></h2><div class="detail-price-row"><div><span class="micro retail-label">Retail Price</span><strong id="detailPrice"></strong></div><span id="detailRating"></span></div><p class="detail-overview" id="detailOverview"></p><p class="catalog-note" id="detailImageNote" hidden></p><p class="micro specs-heading">THE STORY & THE SPECIFICATIONS</p><dl class="spec-sheet" id="detailSpecs"></dl><p><a class="pill" id="soleFitLink" href="http://127.0.0.1:8002">Find my size in SoleFit ↗</a></p><div id="detailFavorite"></div><div id="fitFeedback"></div></div>
     </div>
   </dialog>
 </body>
