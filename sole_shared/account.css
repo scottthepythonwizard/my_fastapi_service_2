@@ -123,3 +123,14 @@ dialog.sole-account::backdrop { background: #171a13a0; }
 @media (max-width: 480px) {
   .site-header:has(.sole-account-nav) { height: auto; min-height: 76px; gap: .35rem .75rem; flex-wrap: wrap; padding-block: .35rem; }
 }
+
+/* Shared navigation between the three SOLE websites. */
+.sole-site-nav { display: flex; align-items: center; justify-content: center; gap: .5rem; font: 700 .75rem/1.4 Arial, Helvetica, sans-serif; white-space: nowrap; }
+.sole-site-nav > :is(a, span) { display: inline-flex; align-items: center; min-height: 44px; padding: .25rem .5rem; color: inherit; text-decoration: none; }
+.sole-site-nav > .header-note { display: inline-flex; visibility: visible; font: inherit; letter-spacing: normal; }
+.sole-site-nav > [aria-current="page"] { text-decoration: underline; text-underline-offset: .3em; }
+.sole-site-nav a:is(:hover, :focus-visible) { text-decoration: underline; text-underline-offset: .3em; }
+@media (max-width: 700px) {
+  .site-header:has(.sole-site-nav) { height: auto; min-height: 68px; flex-wrap: wrap; gap: .25rem .5rem; padding-block: .35rem; }
+  .site-header > .sole-site-nav { order: 3; flex: 1 0 100%; }
+}
