@@ -43,6 +43,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .hero-caption > strong { font-size: 24px; letter-spacing: -.6px; }
 .hero-caption-bottom { display: flex; justify-content: space-between; align-items: center; font-size: 10px; }
 .hero-caption-bottom > span:last-child { font-size: 22px; }
+.hero-bottom > .asterisk, .hero-caption-bottom > span[aria-hidden="true"] { display: none; }
 .editorial-line { display: flex; justify-content: space-between; padding-block: 22px; color: var(--muted); font-size: 7px; border-bottom: 1px solid var(--line); }
 .collection { padding-top: 34px; }
 .collection-heading { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px; gap: 16px; }
