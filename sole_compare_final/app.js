@@ -63,9 +63,9 @@ function renderInventory() {
   $("resultCount").textContent = `${String(items.length).padStart(2, "0")} PAIRS`;
   if (!items.length) {
     const empty = element("div", "state-panel");
-    empty.append(element("span", "state-symbol", "↗"), element("h3", "", "No pairs found."),
+    empty.append(element("h3", "", "No pairs found."),
       element("p", "", "Try another name, colorway, or brand. Your selected pairs are still saved above."));
-    const reset = element("button", "pill", "Show all pairs ↗");
+    const reset = element("button", "pill", "Show all pairs");
     reset.type = "button";
     reset.addEventListener("click", () => { resetFilters(); $("searchInput").focus(); });
     empty.append(reset);
@@ -128,8 +128,8 @@ async function loadInventory() {
     $("resultCount").textContent = "UNAVAILABLE";
     const panel = element("div", "state-panel");
     const message = error.message;
-    panel.append(element("span", "state-symbol", "↗"), element("h3", "", "The archive couldn’t load."), element("p", "", message));
-    const retry = element("button", "pill", "Try again ↗");
+    panel.append(element("h3", "", "The archive couldn’t load."), element("p", "", message));
+    const retry = element("button", "pill", "Try again");
     retry.type = "button";
     retry.addEventListener("click", async () => {
       await loadInventory();

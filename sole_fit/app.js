@@ -18,7 +18,7 @@ function updateSizes() {
 function invalidate() {
   recommendationRequest++;
   $("recommendButton").disabled = false;
-  $("recommendButton").textContent = "Find my fit ↗";
+  $("recommendButton").textContent = "Find my fit";
   state.recommendation = null;
   $("result").hidden = true;
   $("matrixSection").hidden = true;
@@ -68,7 +68,7 @@ async function calculate(event) {
   } finally {
     if (serial === recommendationRequest) {
       $("recommendButton").disabled = false;
-      $("recommendButton").textContent = "Find my fit ↗";
+      $("recommendButton").textContent = "Find my fit";
     }
   }
 }

@@ -68,7 +68,7 @@ function InventoryCard(item, onOpen) {
   const visual = node("div", "card-image");
   visual.append(image);
   card.append(visual, node("p", "micro", shoe.brand), node("h3", "", shoe.name),
-    node("p", "fit-note", `${shoe.cut} cut · ${shoe.closure_type}`), node("span", "micro", "FIT DETAILS & COMMUNITY ↗"));
+    node("p", "fit-note", `${shoe.cut} cut · ${shoe.closure_type}`), node("span", "micro", "FIT DETAILS & COMMUNITY"));
   card.addEventListener("click", () => onOpen(item));
   return window.SoleAccount?.withFavorite(card, item) ?? card;
 }
