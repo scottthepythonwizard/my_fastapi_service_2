@@ -55,6 +55,9 @@ With Chrome installed and the launcher’s Python environment available, run
 `npm run test:browser --prefix supabase/tests`. The Chrome suite opens all
 three actual pages, uses local PostgreSQL policies, and supplies synthetic
 Auth sessions through a test gateway. It does not require private credentials.
+To include the existing Compare live and startup suites on the same isolated data,
+run `npm run test:browser --prefix supabase/tests -- --compare-live` with ports
+5173, 8000, and 19630 free. The browser runner starts and stops its test servers.
 
 - A TLS-verified connection as the runtime role returned 20 rows. All 20 IDs, attributes, images, and provenance matched the original Archive catalog. Supabase reported no security or performance advisory findings.
 - A temporary row was created through the API and confirmed in SQL. A partial update preserved omitted fields and the revised row appeared in all three sites in Chrome. Fit calculated a size and Compare rendered a two-shoe comparison.

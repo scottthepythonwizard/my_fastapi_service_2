@@ -1,6 +1,6 @@
-// FastAPI backend only; index.html opens directly without a frontend server.
-// Replace this origin with your hosted SoleFit API URL when available (no trailing slash).
+// Local fallback for an index.html opened as a file. FastAPI serves its own config.js over HTTP.
+// START_SOLE.cmd mounts the Fit API under /fit on the shared local server.
 window.SOLE_FIT_CONFIG = Object.freeze({
-  apiOrigin: "http://127.0.0.1:8002",
+  apiOrigin: "http://127.0.0.1:8000/fit",
   archiveOrigin: "http://127.0.0.1:8000",
 });

@@ -21,16 +21,17 @@ function fileContext(fetch) {
   return context;
 }
 
-test('HTML loads ordered classic scripts and relative local assets without redirecting', () => {
-  assert.doesNotMatch(html, /type=["']module|location\.replace|href=["']\//);
+test('HTML loads ordered classic scripts and relative calculator assets without redirecting', () => {
+  assert.doesNotMatch(html, /type=["']module|location\.replace/);
   const scripts = [...html.matchAll(/<script\b([^>]*)src="([^"]+)"[^>]*>/g)];
-  assert.deepEqual(scripts.map((match) => match[2]), ['config.js', 'community.js', 'components.js', 'app.js']);
-  for (const [, , asset] of scripts) {
+  const calculatorScripts = scripts.filter((match) => !match[2].startsWith('/sole-'));
+  assert.deepEqual(calculatorScripts.map((match) => match[2]), ['config.js', 'community.js', 'components.js', 'app.js']);
+  for (const [, , asset] of calculatorScripts) {
     assert.ok(fs.existsSync(path.join(root, asset)));
     new vm.Script(fs.readFileSync(path.join(root, asset), 'utf8'));
   }
   for (const [, asset] of html.matchAll(/(?:src|href)="([^"]+)"/g)) {
-    if (/^(https?:|data:|#)/.test(asset)) continue;
+    if (/^(https?:|data:|#|\?|\/sole-)/.test(asset)) continue;
     assert.ok(fs.existsSync(path.join(root, asset)), asset);
   }
   const context = fileContext();
@@ -53,8 +54,8 @@ test('file fetches use the API host and persist votes without cross-site cookies
   const calls = [];
   const fetch = async (url, options) => { calls.push({ url, options }); return { ok: true, json: async () => ({ count: 20 }) }; };
   const first = fileContext(fetch);
-  await first.window.SoleFitCommunity.fitRequest('/api/catalog');
-  assert.equal(calls[0].url, 'http://127.0.0.1:8002/api/catalog');
+  await first.window.SoleFitCommunity.fitRequest('/api/fit/recommend?reference_shoe_id=1&target_shoe_id=6&reference_size=9');
+  assert.equal(calls[0].url, 'http://127.0.0.1:8000/fit/api/fit/recommend?reference_shoe_id=1&target_shoe_id=6&reference_size=9');
   assert.equal(calls[0].options.credentials, 'omit');
   assert.equal(calls[0].options.headers['Content-Type'], undefined);
   await first.window.SoleFitCommunity.fitRequest('/api/fit/feedback', { method: 'POST', body: '{}' });

@@ -29,7 +29,12 @@ async function fitRequest(path, options = {}, origin = window.SOLE_FIT_CONFIG.ap
     if (response.status === 204) return null;
     let body;
     try { body = await response.json(); }
-    catch (cause) { throw new Error(`SoleFit returned non-JSON data (HTTP ${response.status}).`, { cause }); }
+    catch (cause) {
+      const message = response.status === 503
+        ? "SoleFit is temporarily unavailable (HTTP 503). Try again."
+        : `SoleFit returned non-JSON data (HTTP ${response.status}).`;
+      throw new Error(message, { cause });
+    }
     if (!response.ok) {
       const detail = typeof body.detail === "string" ? body.detail : "Please check the selected sizes and vote choices.";
       throw new Error(`SoleFit HTTP ${response.status}: ${detail}`);

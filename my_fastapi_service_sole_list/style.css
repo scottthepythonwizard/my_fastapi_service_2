@@ -66,6 +66,10 @@ h2 { font-size: 29px; line-height: 1.1; letter-spacing: -1.2px; font-weight: 600
 .card-image { background: #eeeee5; border: 1px solid #e6e6dc; position: relative; overflow: hidden; border-radius: 16px; aspect-ratio: 1.12; display: flex; align-items: center; justify-content: center; }
 .card-image img { width: 86%; height: 79%; object-fit: contain; mix-blend-mode: multiply; transition: transform .45s cubic-bezier(.2,.65,.3,1); }
 .card-year { position: absolute; top: 14px; left: 14px; font-size: 8px; letter-spacing: 1px; color: #626557; z-index: 1; }
+.sneaker-list .sole-favorite-card { position: relative; }
+.sneaker-list .sole-favorite-card > .sole-favorite { position: absolute; top: 10px; right: 10px; z-index: 2; display: grid; justify-items: end; max-width: calc(100% - 20px); margin: 0; pointer-events: none; }
+.sneaker-list .sole-favorite > .sole-star { pointer-events: auto; }
+.sneaker-list .sole-favorite-message:not(:empty) { padding: .25rem .4rem; border-radius: .3rem; background: #f8f7f1; text-align: right; }
 .card-arrow { position: absolute; right: 13px; bottom: 13px; border-radius: 50%; background: var(--ink); color: white; width: 33px; height: 33px; display: grid; place-items: center; transform: translateY(8px); opacity: 0; transition: transform .25s, opacity .25s; }
 .card-overlay { position: absolute; left: 14px; bottom: 22px; font-size: 8px; letter-spacing: 1.1px; opacity: 0; transition: opacity .25s; }
 .card-copy { padding: 16px 6px 13px; }
